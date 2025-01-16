@@ -63,8 +63,8 @@ function validateAge() {
     if (!touchedFields.age) return true;
     const age = ageField.value.trim();
     const ageErr = document.getElementById("ageErr");
-    if (age < 0 || age > 100) {
-        ageErr.innerHTML = "*Age should be between 0 and 100.";
+    if (age < 1 || age > 100) {
+        ageErr.innerHTML = "*Age should be between 1 and 100.";
         return false;
     }
     ageErr.innerHTML = "";
