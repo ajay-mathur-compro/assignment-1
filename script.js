@@ -6,7 +6,7 @@ const passwordField = document.getElementById("password");
 let confPasswordField = document.getElementById("confPassword");
 const power = document.getElementById("power-point");
 const submitButton = document.querySelector('button[type="submit"]');
-function myFunction() {
+function toggleDarkMode() {
     var element = document.body;
     element.classList.toggle("dark-mode");
 }
