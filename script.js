@@ -14,6 +14,7 @@ function clearContent() {
     const fields = [nameField, emailField, phoneField, ageField, passwordField, confPasswordField];
     const errors = ["nameErr", "emailErr", "phoneErr", "ageErr", "passErr", "confPassErr"];
     fields.forEach((field, index) => {
+        field.classList.remove("invalid");
         field.classList.remove("valid");
         document.getElementById(errors[index]).innerHTML = "";
     });
@@ -37,19 +38,23 @@ function validateName() {
     if (name.length > 1024) {
         nameErr.textContent = "*Name must be less than 1024 characters";
         nameField.classList.remove("valid");
+        nameField.classList.add("invalid");
         return false;
     }
     if (!/^[a-zA-Z]+$/.test(name)) {
         nameErr.innerHTML = "*Only alphabets are allowed.";
         nameField.classList.remove("valid");
+        nameField.classList.add("invalid");
         return false;
     }
     if (name.length < 3) {
         nameErr.innerHTML = "*Length should be greater than 3.";
         nameField.classList.remove("valid");
+        nameField.classList.add("invalid");
         return false;
     }
     nameErr.innerHTML = "";
+    nameField.classList.remove("invalid");
     nameField.classList.add("valid");
     return true;
 }
@@ -63,9 +68,11 @@ function validateEmail() {
     if (!emailPattern.test(email)) {
         emailErr.innerHTML = "*Invalid Email Address.";
         emailField.classList.remove("valid");
+        emailField.classList.add("invalid");
         return false;
     }
     emailErr.innerHTML = "";
+    emailField.classList.remove("invalid");
     emailField.classList.add("valid");
     return true;
 }
@@ -78,9 +85,11 @@ function validatePhone() {
     if (!/^\d{10}$/.test(phone)) {
         phoneErr.innerHTML = "*Phone number must be exactly 10 digits.";
         phoneField.classList.remove("valid");
+        phoneField.classList.add("invalid");
         return false;
     }
     phoneErr.innerHTML = "";
+    phoneField.classList.remove("invalid");
     phoneField.classList.add("valid");
     return true;
 }
@@ -92,9 +101,11 @@ function validateAge() {
     if (age < 1 || age > 100) {
         ageErr.innerHTML = "*Age should be between 1 and 100.";
         ageField.classList.remove("valid");
+        ageField.classList.add("invalid");
         return false;
     }
     ageErr.innerHTML = "";
+    ageField.classList.remove("invalid");
     ageField.classList.add("valid");
     return true;
 }
@@ -111,12 +122,14 @@ function validatePassword() {
         power.style.width = widthPower[0];
         power.style.backgroundColor = colorPower[0];
         passwordField.classList.remove("valid");
+        passwordField.classList.add("invalid");
         return false;
     }
 
     if (password.length > 1024) {
         passErr.textContent = "*Password must be less than 1024 characters";
         passwordField.classList.remove("valid");
+        passwordField.classList.add("invalid");
         return false;
     }
 
@@ -128,6 +141,7 @@ function validatePassword() {
     });
     power.style.width = widthPower[point];
     power.style.backgroundColor = colorPower[point];
+    passwordField.classList.remove("invalid");
     passwordField.classList.add("valid");
     return true;
 }
@@ -141,9 +155,11 @@ function validateConfirmPassword() {
     if (confPassword !== password) {
         confPassErr.innerHTML = "*Passwords do not match.";
         confPasswordField.classList.remove("valid");
+        confPasswordField.classList.add("invalid");
         return false;
     }
     confPassErr.innerHTML = "";
+    confPasswordField.classList.remove("invalid");
     confPasswordField.classList.add("valid");
     return true;
 }
