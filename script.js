@@ -41,7 +41,7 @@ function validateName() {
         nameField.classList.add("invalid");
         return false;
     }
-    if (!/^[a-zA-Z]+$/.test(name)) {
+    if (!/^[a-zA-Z\s]+$/.test(name)) {
         nameErr.innerHTML = "*Only alphabets are allowed.";
         nameField.classList.remove("valid");
         nameField.classList.add("invalid");
