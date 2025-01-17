@@ -215,6 +215,10 @@ function togglePasswordVisibility() {
         eyeClose.style.display = "inline";
     }
 }
+document.getElementById("form").addEventListener("submit", function (event) {
+    alert("Form submitted successfully!");
+    location.reload();
+});
 
 validateForm();
 
