@@ -12,11 +12,17 @@ function toggleDarkMode() {
 }
 function clearContent() {
     nameField.classList.remove("valid");
+    nameErr.innerHTML = "";
     emailField.classList.remove("valid");
+    emailErr.innerHTML = "";
     phoneField.classList.remove("valid");
+    phoneErr.innerHTML = "";
     ageField.classList.remove("valid");
+    ageErr.innerHTML = "";
     passwordField.classList.remove("valid");
+    passErr.innerHTML = "";
     confPasswordField.classList.remove("valid");
+    confPassErr.innerHTML = "";
 }
 let touchedFields = {
     name: false,
