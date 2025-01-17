@@ -137,6 +137,7 @@ button {
 
 #submit {
     margin-left: 0;
+    margin-right: 15px;
 }
 
 input:focus,
@@ -183,4 +184,10 @@ button:hover:not(:disabled) {
     width: 0;
     background-color: #d73f40;
     transition: width 0.3s ease-in-out;
+}
+
+.button-container {
+    display: flex;
+    justify-content: center;
+    margin-top: 10px;
 }

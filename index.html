@@ -92,8 +92,12 @@
         <label for="confPassword">Confirm Password</label>
         <input type="password" id="confPassword" name="confPassword" required
             aria-label="Confirm Password"></input><span class="error" id="confPassErr"></span><br>
-        <button id="submit" type="submit" value="Submit" disabled>Submit</button>
-
+        
+        <div class="button-container">
+            <button id="submit" type="submit" value="Submit" disabled>Submit</button>
+            <button type="reset" id="reset" aria-label="Reset">Clear</button>
+        </div>    
+        
     </form>
 </body>
 <script src="script.js"></script>
