@@ -3,7 +3,7 @@ const emailField = document.getElementById("email");
 const phoneField = document.getElementById("phone");
 const ageField = document.getElementById("age");
 const passwordField = document.getElementById("password");
-let confPasswordField = document.getElementById("confPassword");
+const confPasswordField = document.getElementById("confPassword");
 const power = document.getElementById("power-point");
 const submitButton = document.querySelector('button[type="submit"]');
 function toggleDarkMode() {
@@ -17,6 +17,8 @@ function clearContent() {
         field.classList.remove("valid");
         document.getElementById(errors[index]).innerHTML = "";
     });
+    power.style.width = "0%";
+    power.style.backgroundColor = "#D73F40";
 }
 let touchedFields = {
     name: false,
