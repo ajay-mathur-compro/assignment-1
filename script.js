@@ -204,6 +204,16 @@ function togglePasswordVisibility() {
     const passwordInput = document.getElementById("password");
     const type = passwordInput.getAttribute("type") === "password" ? "text" : "password";
     passwordInput.setAttribute("type", type);
+
+    const eyeOpen = document.querySelector(".eye-open");
+    const eyeClose = document.querySelector(".eye-close");
+    if (type === "password") {
+        eyeOpen.style.display = "inline";
+        eyeClose.style.display = "none";
+    } else {
+        eyeOpen.style.display = "none";
+        eyeClose.style.display = "inline";
+    }
 }
 
 validateForm();

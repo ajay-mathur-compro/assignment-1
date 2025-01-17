@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Assignment</title>
     <link rel="stylesheet" href="styles.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 
 </head>
 
@@ -83,7 +84,10 @@
         <label for="password">Password</label>
         <div id="password-container">
             <input type="password" id="password" name="password" required aria-label="Password"></input>
-            <span class="toggle-password" onclick="togglePasswordVisibility()">👁️</span>
+            <span class="toggle-password" onclick="togglePasswordVisibility()">
+                <span class="eye-open"><i class="fa-solid fa-eye"></i></span>
+                <span class="eye-close" style="display: none;"><i class="fa-solid fa-eye-slash"></i></span>
+            </span>
         </div>
 
         <span class="error" id="passErr"></span><br>
