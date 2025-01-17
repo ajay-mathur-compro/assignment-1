@@ -14,7 +14,7 @@
     <div id="toggle-container">
         <h4>Switch Theme</h4>
         <label class="switch">
-            <input type="checkbox" id="toggle" onclick="toggleDarkMode()">
+            <input type="checkbox" id="toggle" onclick="toggleDarkMode()" aria-label="Switch Theme">
             <span class="slider round"></span>
         </label>
     </div>
@@ -23,21 +23,24 @@
 
 
         <label for="name">Name:</label>
-        <input type="text" id="name" name="name" required></input><span class="error" id="nameErr"></span><br>
+        <input type="text" id="name" name="name" required aria-label="Name"></input><span class="error"
+            id="nameErr"></span><br>
 
 
         <label for="email">Email:</label>
-        <input type="text" id="email" name="email" placeholder="john.doe@example.com" required></input><span
-            class="error" id="emailErr"></span><br>
+        <input type="text" id="email" name="email" placeholder="john.doe@example.com" required
+            aria-label="Email"></input><span class="error" id="emailErr"></span><br>
         <label for="phone">Phone Number:</label>
-        <input type="text" id="phone" name="phone" required></input><span class="error" id="phoneErr"></span><br>
+        <input type="text" id="phone" name="phone" required aria-label="Phone"></input><span class="error"
+            id="phoneErr"></span><br>
         <label for="age">Age:</label>
         <input type="number" id="age" name="age" onkeypress="return event.charCode >= 48 && event.charCode <= 57"
-            required></input><span class="error" id="ageErr"></span><br>
+            required aria-label="Age"></input><span class="error" id="ageErr"></span><br>
         <label for="address">Address:</label>
-        <input type="text" id="address" name="address" required></input><span class="error" id="addressErr"></span><br>
+        <input type="text" id="address" name="address" required  aria-label="Address"></input><span class="error" id="addressErr"
+           ></span><br>
         <label for="state">State: </label>
-        <select id="state" name="state">
+        <select id="state" name="state" aria-label="State">
             <option value="">--Select State--</option>
             <option value="AP">Andhra Pradesh</option>
             <option value="AR">Arunachal Pradesh</option>
@@ -78,7 +81,7 @@
         </select>
         <br>
         <label for="password">Password</label>
-        <input type="password" id="password" name="password" required></input><span class="error"
+        <input type="password" id="password" name="password" required aria-label="Password"></input><span class="error"
             id="passErr"></span><br>
         <label for="">
             Strength of password
@@ -87,8 +90,8 @@
             <div id="power-point"></div>
         </div>
         <label for="confPassword">Confirm Password</label>
-        <input type="password" id="confPassword" name="confPassword" required></input><span class="error"
-            id="confPassErr"></span><br>
+        <input type="password" id="confPassword" name="confPassword" required
+            aria-label="Confirm Password"></input><span class="error" id="confPassErr"></span><br>
         <button id="submit" type="submit" value="Submit" disabled>Submit</button>
 
     </form>

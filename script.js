@@ -23,6 +23,10 @@ function validateName() {
     if (!touchedFields.name) return true;
     const name = nameField.value.trim();
     const nameErr = document.getElementById("nameErr");
+    if (name.length > 1024) {
+        nameErr.textContent = "*Name must be less than 1024 characters";
+        return false;
+    }
     if (!/^[a-zA-Z]+$/.test(name)) {
         nameErr.innerHTML = "*Only alphabets are allowed.";
         return false;
@@ -73,15 +77,22 @@ function validateAge() {
 
 function validatePassword() {
     if (!touchedFields.password) return true;
-    const value = passwordField.value;
+    const password = passwordField.value;
     const passErr = document.getElementById("passErr");
     const widthPower = ["1%", "25%", "50%", "75%", "100%"];
     const colorPower = ["#D73F40", "#DC6551", "#F2B84F", "#BDE952", "#3ba62f"];
 
-    if (value.length < 6) {
+
+
+    if (password.length < 6) {
         passErr.innerHTML = "*Password should be at least 6 characters.";
         power.style.width = widthPower[0];
         power.style.backgroundColor = colorPower[0];
+        return false;
+    }
+
+    if (password.length > 1024) {
+        passErr.textContent = "*Password must be less than 1024 characters";
         return false;
     }
 
@@ -89,7 +100,7 @@ function validatePassword() {
     passErr.innerHTML = "";
     const arrayTest = [/[0-9]/, /[a-z]/, /[A-Z]/, /[^0-9a-zA-Z]/];
     arrayTest.forEach((regex) => {
-        if (regex.test(value)) point += 1;
+        if (regex.test(password)) point += 1;
     });
     power.style.width = widthPower[point];
     power.style.backgroundColor = colorPower[point];
