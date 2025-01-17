@@ -224,3 +224,17 @@ button:hover:not(:disabled) {
     justify-content: center;
     margin-top: 10px;
 }
+
+.password-container {
+    position: relative;
+    width: 100%;
+}
+
+.password-container input {
+    width: calc(100% - 30px); /* Adjust width to make room for the eye icon */
+}
+
+.toggle-password { 
+    cursor: pointer;
+    margin-left: -37px; /* Adjust position to align with the input */
+}

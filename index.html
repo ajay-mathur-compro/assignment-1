@@ -81,8 +81,12 @@
         </select>
         <br>
         <label for="password">Password</label>
-        <input type="password" id="password" name="password" required aria-label="Password"></input><span class="error"
-            id="passErr"></span><br>
+        <div id="password-container">
+            <input type="password" id="password" name="password" required aria-label="Password"></input>
+            <span class="toggle-password" onclick="togglePasswordVisibility()">👁️</span>
+        </div>
+
+        <span class="error" id="passErr"></span><br>
         <label for="">
             Strength of password
         </label>
