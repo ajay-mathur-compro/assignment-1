@@ -51,7 +51,8 @@ h4 {
     background-color: rgb(165, 155, 235);
     box-shadow: 0 4px 8px rgba(239, 7, 7, 0.2);
 }
-.dark-mode #reset{
+
+.dark-mode #reset {
     background-color: #006ee5;
     color: white;
 }
@@ -141,11 +142,16 @@ button {
     box-sizing: border-box;
 }
 
+.valid {
+    border: 2px solid green;
+}
+
 #submit {
     margin-left: 0;
     margin-right: 15px;
 }
-#reset{
+
+#reset {
     background-color: #444444;
     color: white;
 }
@@ -155,9 +161,10 @@ select:focus {
     border-color: #007bff;
     outline: none;
 }
-select{
+
+select {
     margin-top: 10px;
-    cursor: pointer; 
+    cursor: pointer;
     font-size: 14px;
     appearance: none;
     -webkit-appearance: none;
