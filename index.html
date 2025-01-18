@@ -84,10 +84,13 @@
         <label for="password">Password</label>
         <div id="password-container">
             <input type="password" id="password" name="password" required aria-label="Password"></input>
-            <span class="toggle-password" onclick="togglePasswordVisibility()">
+            <button type="button" class="toggle-password" onclick="togglePasswordVisibility()"
+                aria-label="Toggle Password Visibility">
                 <span class="eye-open"><i class="fa-solid fa-eye"></i></span>
                 <span class="eye-close" style="display: none;"><i class="fa-solid fa-eye-slash"></i></span>
-            </span>
+            </button>
+
+
         </div>
 
         <span class="error" id="passErr"></span><br>

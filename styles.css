@@ -20,43 +20,6 @@ h4 {
     margin-right: 5px;
 }
 
-.dark-mode {
-    background-color: #333;
-}
-
-.dark-mode h1 {
-    color: white;
-}
-
-.dark-mode h4 {
-    color: white;
-
-}
-
-.dark-mode .error {
-    color: #770000
-}
-
-.dark-mode #submit {
-    background-color: #444444;
-    color: white;
-}
-
-.dark-mode #submit:disabled {
-    background-color: #ccc;
-    cursor: not-allowed;
-}
-
-.dark-mode form {
-    background-color: rgb(165, 155, 235);
-    box-shadow: 0 4px 8px rgba(239, 7, 7, 0.2);
-}
-
-.dark-mode #reset {
-    background-color: #006ee5;
-    color: white;
-}
-
 #toggle-container {
     display: flex;
     justify-content: center;
@@ -129,15 +92,12 @@ form {
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
 }
 
-
 label {
     display: block;
     margin-top: 10px;
     margin-bottom: 5px;
     font-weight: bold;
 }
-
-
 
 input,
 select,
@@ -148,24 +108,6 @@ button {
     border: 1px solid #ccc;
     border-radius: 5px;
     box-sizing: border-box;
-}
-
-.valid {
-    border: 2px solid green;
-}
-
-.invalid {
-    border: 2px solid red;
-}
-
-#submit {
-    margin-left: 0;
-    margin-right: 15px;
-}
-
-#reset {
-    background-color: #444444;
-    color: white;
 }
 
 input:focus,
@@ -184,7 +126,6 @@ select {
     background: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12'%3e%3cpath d='M6 9L1 4h10L6 9z' fill='%23666666'/%3e%3c/svg%3e") no-repeat;
     background-position: calc(100% - 15px) center;
     background-color: white;
-
 }
 
 button {
@@ -204,10 +145,28 @@ button:hover:not(:disabled) {
     background-color: #0056b3;
 }
 
+#submit {
+    margin-left: 0;
+    margin-right: 15px;
+}
+
+#reset {
+    background-color: #444444;
+    color: white;
+}
+
 .error {
     color: #e50000;
     font-size: 0.85em;
     margin-top: 5px;
+}
+
+.valid {
+    border: 2px solid green;
+}
+
+.invalid {
+    border: 2px solid red;
 }
 
 .power-container {
@@ -234,16 +193,54 @@ button:hover:not(:disabled) {
 }
 
 .password-container {
+    display: flex;
+    flex-direction: row;
     position: relative;
     width: 100%;
 }
 
 #password {
-    padding-right: 37px;
-    width: 100%;
+    width: 95%;
 }
 
 .toggle-password {
+    width: 4%;
     cursor: pointer;
-    margin-left: -37px;
+    background-color: #808080;
+}
+
+.dark-mode {
+    background-color: #333;
+}
+
+.dark-mode h1 {
+    color: white;
+}
+
+.dark-mode h4 {
+    color: white;
+}
+
+.dark-mode .error {
+    color: #770000;
+}
+
+.dark-mode #submit {
+    background-color: #444444;
+    color: white;
+}
+
+.dark-mode #submit:disabled {
+    background-color: #ccc;
+    cursor: not-allowed;
+}
+
+.dark-mode form {
+    background-color: rgb(165, 155, 235);
+    box-shadow: 0 4px 8px rgba(239, 7, 7, 0.2);
+}
+
+.dark-mode #reset {
+    background-color: #006ee5;
+    color: white;
 }
