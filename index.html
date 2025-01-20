@@ -24,24 +24,24 @@
 
 
         <label for="name">Name:</label>
-        <input type="text" id="name" name="name" required aria-label="Name"></input><span class="error"
-            id="nameErr"></span><br>
+        <input type="text" id="name" name="name" aria-labelledby="Name" required aria-labelledby="Name"></input><span class="error"
+            id="nameErr" aria-live="assertive"></span><br>
 
 
         <label for="email">Email:</label>
         <input type="text" id="email" name="email" placeholder="john.doe@example.com" required
-            aria-label="Email"></input><span class="error" id="emailErr"></span><br>
+            aria-labelledby="Email"></input><span class="error" id="emailErr" aria-live="assertive"></span><br>
         <label for="phone">Phone Number:</label>
-        <input type="text" id="phone" name="phone" required aria-label="Phone"></input><span class="error"
-            id="phoneErr"></span><br>
+        <input type="text" id="phone" name="phone" required aria-labelledby="Phone"></input><span class="error"
+            id="phoneErr" aria-live="polite"></span><br>
         <label for="age">Age:</label>
         <input type="number" id="age" name="age" onkeypress="return event.charCode >= 48 && event.charCode <= 57"
-            required aria-label="Age"></input><span class="error" id="ageErr"></span><br>
+            required aria-labelledby="Age"></input><span class="error" id="ageErr" aria-live="assertive"></span><br>
         <label for="address">Address:</label>
-        <input type="text" id="address" name="address" required aria-label="Address"></input><span class="error"
-            id="addressErr"></span><br>
+        <input type="text" id="address" name="address" required aria-labelledby="Address"></input><span class="error"
+            id="addressErr" aria-live="assertive"></span><br>
         <label for="state">State: </label>
-        <select id="state" name="state" aria-label="State">
+        <select id="state" name="state" aria-labelledby="State">
             <option value="" aria-label="Select State">--Select State--</option>
             <option value="AP" aria-label="Andhra Pradesh">Andhra Pradesh</option>
             <option value="AR" aria-label="Arunachal Pradesh">Arunachal Pradesh</option>
@@ -83,7 +83,7 @@
         <br>
         <label for="password">Password</label>
         <div id="password-container">
-            <input type="password" id="password" name="password" required aria-label="Password"></input>
+            <input type="password" id="password" name="password" required aria-labelledby="Password"></input>
             <button type="button" class="toggle-password" onclick="togglePasswordVisibility()"
                 aria-label="Toggle Password Visibility">
                 <span class="eye-open"><i class="fa-solid fa-eye"></i></span>
@@ -92,8 +92,7 @@
 
 
         </div>
-
-        <span class="error" id="passErr"></span><br>
+        <span class="error" id="passErr" aria-live="assertive"></span><br>
         <label for="">
             Strength of password
         </label>
@@ -102,11 +101,10 @@
         </div>
         <label for="confPassword">Confirm Password</label>
         <input type="password" id="confPassword" name="confPassword" required
-            aria-label="Confirm Password"></input><span class="error" id="confPassErr"></span><br>
-
+            aria-labelledby="Confirm Password"></input><span class="error" id="confPassErr" aria-live="assertive"></span><br>
         <div class="button-container">
             <button id="submit" type="submit" value="Submit" disabled>Submit</button>
-            <button type="reset" id="reset" aria-label="Reset" onclick="clearContent()">Clear</button>
+            <button type="reset" id="reset" aria-labelledby="Clear" onclick="clearContent()">Clear</button>
         </div>
 
     </form>
