@@ -1,16 +1,15 @@
-const nameField = document.getElementById("name");
-const emailField = document.getElementById("email");
-const phoneField = document.getElementById("phone");
-const ageField = document.getElementById("age");
-const passwordField = document.getElementById("password");
-const confPasswordField = document.getElementById("confPassword");
+const maxContentLength = 1024;
+const Theme = {
+    dark: "dark-mode",
+};
 const power = document.getElementById("power-point");
 const submitButton = document.querySelector('button[type="submit"]');
+const toggleSwitch = document.getElementById("toggle");
 function toggleDarkMode() {
     var element = document.body;
-    element.classList.toggle("dark-mode");
+    element.classList.toggle(Theme.dark);
 
-    if (element.classList.contains("dark-mode")) {
+    if (element.classList.contains(Theme.dark)) {
         localStorage.setItem("theme", "dark");
     } else {
         localStorage.setItem("theme", "light");
@@ -19,16 +18,19 @@ function toggleDarkMode() {
 window.onload = function () {
     const savedTheme = localStorage.getItem("theme");
     if (savedTheme === "dark") {
-        document.body.classList.add("dark-mode");
+        document.body.classList.add(Theme.dark);
+        toggleSwitch.checked = true;
+    } else {
+        toggleSwitch.checked = false;
     }
 };
 const fields = {
-    name: nameField,
-    email: emailField,
-    phone: phoneField,
-    age: ageField,
-    password: passwordField,
-    confPassword: confPasswordField,
+    name: "name",
+    email: "email",
+    phone: "phone",
+    age: "age",
+    password: "password",
+    confPassword: "confPassword",
 }
 const errors = {
     name: "nameErr",
@@ -39,12 +41,10 @@ const errors = {
     confPassword: "confPassErr",
 }
 function clearContent() {
-    for(const key in fields) {
-        const field = fields[key];
-        const errorField = document.getElementById(errors[key]);
-        field.classList.remove("valid");
-        field.classList.remove("invalid");
-        errorField.innerHTML = "";
+    for (const key in fields) {
+        document.getElementById(fields[key]).classList.remove("valid");
+        document.getElementById(fields[key]).classList.remove("invalid");
+        document.getElementById(errors[key]).innerHTML = "";
     }
     power.style.width = "0%";
     power.style.backgroundColor = "#D73F40";
@@ -69,11 +69,13 @@ function setValidationClasses(field, isValid) {
 }
 
 function validateName() {
+
     if (!touchedFields.name) return true;
+    const nameField = document.getElementById("name");
     const name = nameField.value.trim();
     const nameErr = document.getElementById("nameErr");
 
-    if (name.length > 1024) {
+    if (name.length > maxContentLength) {
         nameErr.textContent = "*Name must be less than 1024 characters";
         setValidationClasses(nameField, false);
         return false;
@@ -95,6 +97,7 @@ function validateName() {
 
 function validateEmail() {
     if (!touchedFields.email) return true;
+    const emailField = document.getElementById("email");
     const email = emailField.value.trim();
     const emailErr = document.getElementById("emailErr");
     const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
@@ -111,6 +114,7 @@ function validateEmail() {
 
 function validatePhone() {
     if (!touchedFields.phone) return true;
+    const phoneField = document.getElementById("phone");
     const phone = phoneField.value.trim();
     const phoneErr = document.getElementById("phoneErr");
 
@@ -125,6 +129,7 @@ function validatePhone() {
 }
 function validateAge() {
     if (!touchedFields.age) return true;
+    const ageField = document.getElementById("age");
     const age = ageField.value.trim();
     const ageErr = document.getElementById("ageErr");
 
@@ -140,6 +145,7 @@ function validateAge() {
 
 function validatePassword() {
     if (!touchedFields.password) return true;
+    const passwordField = document.getElementById("password");
     const password = passwordField.value;
     const passErr = document.getElementById("passErr");
     const widthPower = ["1%", "25%", "50%", "75%", "100%"];
@@ -153,7 +159,7 @@ function validatePassword() {
         return false;
     }
 
-    if (password.length > 1024) {
+    if (password.length > maxContentLength) {
         passErr.textContent = "*Password must be less than 1024 characters";
         setValidationClasses(passwordField, false);
         return false;
@@ -172,6 +178,8 @@ function validatePassword() {
 }
 
 function validateConfirmPassword() {
+    const passwordField = document.getElementById("password");
+    const confPasswordField = document.getElementById("confPassword");
     if (!touchedFields.confPassword) return true;
     const password = passwordField.value;
     const confPassword = confPasswordField.value;
@@ -199,30 +207,12 @@ function validateForm() {
 }
 
 
-nameField.addEventListener("input", function () {
-    touchedFields.name = true;
+document.getElementById("form").addEventListener("input", function (event) {
+    touchedFields[event.target.id] = true;
     validateForm();
-});
-emailField.addEventListener("input", function () {
-    touchedFields.email = true;
-    validateForm();
-});
-phoneField.addEventListener("input", function () {
-    touchedFields.phone = true;
-    validateForm();
-});
-ageField.addEventListener("input", function () {
-    touchedFields.age = true;
-    validateForm();
-});
-passwordField.addEventListener("input", function () {
-    touchedFields.password = true;
-    validateForm();
-});
-confPasswordField.addEventListener("input", function () {
-    touchedFields.confPassword = true;
-    validateForm();
-});
+})
+
+
 function togglePasswordVisibility() {
     const passwordInput = document.getElementById("password");
     const type = passwordInput.getAttribute("type") === "password" ? "text" : "password";
