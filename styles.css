@@ -195,12 +195,11 @@ button:hover:not(:disabled) {
 .password-container {
     display: flex;
     flex-direction: row;
-    position: relative;
     width: 100%;
 }
 
 #password {
-    width: 95%;
+    width: 94%;
 }
 
 .toggle-password {
@@ -243,4 +242,17 @@ button:hover:not(:disabled) {
 .dark-mode #reset {
     background-color: #006ee5;
     color: white;
+}
+@media (max-width: 816px) {
+    form {
+        width: 90%;
+    }
+}
+@media (max-width: 1300px) {
+    #password {
+        width: 100%;
+    }
+    .toggle-password {
+        width: 50px;
+    }
 }

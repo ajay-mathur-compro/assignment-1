@@ -29,6 +29,7 @@ const fields = {
     email: "email",
     phone: "phone",
     age: "age",
+    state: "state",
     password: "password",
     confPassword: "confPassword",
 }
@@ -37,6 +38,7 @@ const errors = {
     email: "emailErr",
     phone: "phoneErr",
     age: "ageErr",
+    state: "stateErr",
     password: "passErr",
     confPassword: "confPassErr",
 }
@@ -54,6 +56,7 @@ let touchedFields = {
     email: false,
     phone: false,
     age: false,
+    state: false,
     password: false,
     confPassword: false,
 };
@@ -142,6 +145,21 @@ function validateAge() {
     setValidationClasses(ageField, true);
     return true;
 }
+function validateState() {
+    if (!touchedFields.state) return true;
+    const stateField = document.getElementById("state");
+    const state = stateField.value;
+    const stateErr = document.getElementById("stateErr");
+    if (state === "") {
+        stateErr.innerHTML = "*Please select a state.";
+        setValidationClasses(stateField, false);
+        return false;
+    }
+    stateErr.innerHTML = "";
+    setValidationClasses(stateField, true);
+    return true;
+}
+
 
 function validatePassword() {
     if (!touchedFields.password) return true;
@@ -201,6 +219,7 @@ function validateForm() {
         validateEmail() &&
         validatePhone() &&
         validateAge() &&
+        validateState() &&
         validatePassword() &&
         validateConfirmPassword();
     submitButton.disabled = !isFormValid;
@@ -211,6 +230,11 @@ document.getElementById("form").addEventListener("input", function (event) {
     touchedFields[event.target.id] = true;
     validateForm();
 })
+document.getElementById("state").addEventListener("change", function () {
+    touchedFields.state = true;
+    validateState();
+    validateForm();
+});
 
 
 function togglePasswordVisibility() {
@@ -229,8 +253,18 @@ function togglePasswordVisibility() {
     }
 }
 document.getElementById("form").addEventListener("submit", function (event) {
-    alert("Form submitted successfully!");
-    location.reload();
+    const stateField = document.getElementById("state");
+    const state = stateField.value;
+    const stateErr = document.getElementById("stateErr");
+    if(state === "") {
+        stateErr.innerHTML = "*Please select a state.";
+        setValidationClasses(stateField, false);
+        event.preventDefault();  
+    }else {
+        alert("Form submitted successfully!");
+        location.reload();
+    }
+    
 });
 
 validateForm();
