@@ -20,22 +20,28 @@ const errors = {
 function toggleDarkMode() {
     var element = document.body;
     element.classList.toggle(Theme.DARK);
+    const themeAnnouncement = document.getElementById("theme-announcement");
 
     if (element.classList.contains(Theme.DARK)) {
         localStorage.setItem("theme", Theme.DARK);
+        themeAnnouncement.textContent = "Switched to dark mode";
     } else {
         localStorage.setItem("theme", Theme.LIGHT);
+        themeAnnouncement.textContent = "Switched to light mode";
     }
 }
 
 window.onload = function () {
     const savedTheme = localStorage.getItem("theme");
     const toggleSwitch = document.getElementById("toggle");
+    const themeAnnouncement = document.getElementById("theme-announcement");
     if (savedTheme === Theme.DARK) {
         document.body.classList.add(Theme.DARK);
         toggleSwitch.checked = true;
+        themeAnnouncement.textContent = "Dark mode";
     } else {
         toggleSwitch.checked = false;
+        themeAnnouncement.textContent = "Light mode";
     }
 };
 

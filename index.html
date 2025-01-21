@@ -17,25 +17,30 @@
             <span class="slider round"></span>
         </label>
     </div>
+    <div id="theme-announcement" aria-live="polite" style="position: absolute; left: -9999px;"></div>
     <h1>Interactive Form Validator</h1>
     <form id="form" onsubmit="submitForm(event)">
         <label for="name">Name:</label>
-        <input type="text" id="name" name="name" aria-labelledby="Name" oninput="validateName(event)" required aria-labelledby="Name"></input><span
-            class="error" id="nameErr" aria-live="assertive"></span><br>
+        <input type="text" id="name" name="name" aria-labelledby="Name" oninput="validateName(event)" required
+            aria-labelledby="Name"></input><span class="error" id="nameErr" role="error"
+            aria-live="assertive"></span><br>
         <label for="email">Email:</label>
-        <input type="text" id="email" name="email" placeholder="john.doe@example.com" required
-            aria-labelledby="Email" oninput="validateEmail(event)"></input><span class="error" id="emailErr" aria-live="assertive"></span><br>
+        <input type="text" id="email" name="email" placeholder="john.doe@example.com" required aria-labelledby="Email"
+            oninput="validateEmail(event)"></input><span class="error" id="emailErr" role="error"
+            aria-live="assertive"></span><br>
         <label for="phone">Phone Number:</label>
-        <input type="text" id="phone" name="phone" required aria-labelledby="Phone" oninput="validatePhone(event)"></input><span class="error"
-            id="phoneErr" aria-live="polite"></span><br>
+        <input type="text" id="phone" name="phone" required aria-labelledby="Phone"
+            oninput="validatePhone(event)"></input><span class="error" id="phoneErr" aria-live="polite"></span><br>
         <label for="age">Age:</label>
         <input type="number" id="age" name="age" onkeypress="return event.charCode >= 48 && event.charCode <= 57"
-            required aria-labelledby="Age" oninput="validateAge(event)"></input><span class="error" id="ageErr" aria-live="assertive"></span><br>
+            required aria-labelledby="Age" oninput="validateAge(event)"></input><span class="error" id="ageErr"
+            role="error" aria-live="assertive"></span><br>
         <label for="address">Address:</label>
         <input type="text" id="address" name="address" required aria-labelledby="Address"></input><span class="error"
-            id="addressErr" aria-live="assertive"></span><br>
+            id="addressErr" role="error" aria-live="assertive"></span><br>
         <label for="state">State: </label>
-        <select id="state" name="state" aria-labelledby="State" oninput="validateState(event)" onchange="validateState(event);">
+        <select id="state" name="state" aria-labelledby="State" oninput="validateState(event)"
+            onchange="validateState(event);">
             <option value="" aria-label="Select State">--Select State--</option>
             <option value="AP" aria-label="Andhra Pradesh">Andhra Pradesh</option>
             <option value="AR" aria-label="Arunachal Pradesh">Arunachal Pradesh</option>
@@ -73,17 +78,18 @@
             <option value="DL" aria-label="Delhi">Delhi</option>
             <option value="LD" aria-label="Lakshadweep">Lakshadweep</option>
             <option value="PY" aria-label="Puducherry">Puducherry</option>
-        </select><span class="error" id="stateErr" aria-live="assertive"></span><br>
+        </select><span class="error" id="stateErr" role="error" aria-live="assertive"></span><br>
         <label for="password">Password</label>
         <div id="password-container">
-            <input type="password" id="password" name="password" required aria-labelledby="Password" oninput="validatePassword(event)"></input>
+            <input type="password" id="password" name="password" required aria-labelledby="Password"
+                oninput="validatePassword(event)"></input>
             <button type="button" class="toggle-password" onclick="togglePasswordVisibility()"
                 aria-label="Toggle Password Visibility">
                 <span class="eye-open"><i class="fa-solid fa-eye"></i></span>
                 <span class="eye-close" style="display: none;"><i class="fa-solid fa-eye-slash"></i></span>
             </button>
         </div>
-        <span class="error" id="passErr" aria-live="assertive"></span><br>
+        <span class="error" id="passErr" role="error" aria-live="assertive"></span><br>
         <label for="">
             Strength of password
         </label>
@@ -91,8 +97,8 @@
             <div id="power-point"></div>
         </div>
         <label for="confPassword">Confirm Password</label>
-        <input type="password" id="confPassword" name="confPassword" required
-            aria-labelledby="Confirm Password" oninput="validateConfirmPassword(event)"></input><span class="error" id="confPassErr"
+        <input type="password" id="confPassword" name="confPassword" required aria-labelledby="Confirm Password"
+            oninput="validateConfirmPassword(event)"></input><span class="error" id="confPassErr" role="error"
             aria-live="assertive"></span><br>
         <div class="button-container">
             <button id="submit" type="submit" value="Submit" disabled>Submit</button>
