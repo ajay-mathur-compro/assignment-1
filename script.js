@@ -245,10 +245,10 @@ function togglePasswordVisibility() {
     }
 }
 
-document.getElementById("form").addEventListener("submit", function (event) {
-    const stateField = document.getElementById("state");
+function submitForm(event){
+    const stateField = document.getElementById(fields.state);
     const state = stateField.value;
-    const stateErr = document.getElementById("stateErr");
+    const stateErr = document.getElementById(errors.state);
     if (state === "") {
         stateErr.innerHTML = "*Please select a state.";
         setValidationClasses(stateField, false);
@@ -257,6 +257,5 @@ document.getElementById("form").addEventListener("submit", function (event) {
         alert("Form submitted successfully!");
         location.reload();
     }
-});
-
+}
 

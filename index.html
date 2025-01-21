@@ -18,7 +18,7 @@
         </label>
     </div>
     <h1>Interactive Form Validator</h1>
-    <form id="form">
+    <form id="form" onsubmit="submitForm(event)">
         <label for="name">Name:</label>
         <input type="text" id="name" name="name" aria-labelledby="Name" oninput="validateName(event)" required aria-labelledby="Name"></input><span
             class="error" id="nameErr" aria-live="assertive"></span><br>
