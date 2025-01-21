@@ -44,7 +44,7 @@ h4 {
     box-shadow: 0 0 3px 3px #2196F3;
 }
 
-.dark-mode .switch input:focus+.slider {
+.dark .switch input:focus+.slider {
     box-shadow: 0 0 3px 3px #65f149;
 }
 
@@ -208,50 +208,53 @@ button:hover:not(:disabled) {
     background-color: #808080;
 }
 
-.dark-mode {
+.dark {
     background-color: #333;
 }
 
-.dark-mode h1 {
+.dark h1 {
     color: white;
 }
 
-.dark-mode h4 {
+.dark h4 {
     color: white;
 }
 
-.dark-mode .error {
+.dark .error {
     color: #770000;
 }
 
-.dark-mode #submit {
+.dark #submit {
     background-color: #444444;
     color: white;
 }
 
-.dark-mode #submit:disabled {
+.dark #submit:disabled {
     background-color: #ccc;
     cursor: not-allowed;
 }
 
-.dark-mode form {
+.dark form {
     background-color: rgb(165, 155, 235);
     box-shadow: 0 4px 8px rgba(239, 7, 7, 0.2);
 }
 
-.dark-mode #reset {
+.dark #reset {
     background-color: #006ee5;
     color: white;
 }
+
 @media (max-width: 816px) {
     form {
         width: 90%;
     }
 }
+
 @media (max-width: 1300px) {
     #password {
         width: 100%;
     }
+
     .toggle-password {
         width: 50px;
     }
