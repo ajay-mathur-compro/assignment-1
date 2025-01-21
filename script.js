@@ -7,6 +7,16 @@ const Theme = {
     DARK: "dark",
 }
 
+const errors = {
+    name: "nameErr",
+    email: "emailErr",
+    phone: "phoneErr",
+    age: "ageErr",
+    state: "stateErr",
+    password: "passErr",
+    confPassword: "confPassErr",
+};
+
 function toggleDarkMode() {
     var element = document.body;
     element.classList.toggle(Theme.DARK);
@@ -29,34 +39,8 @@ window.onload = function () {
     }
 };
 
-const fields = {
-    name: "name",
-    email: "email",
-    phone: "phone",
-    age: "age",
-    state: "state",
-    password: "password",
-    confPassword: "confPassword",
-}
-
-const errors = {
-    name: "nameErr",
-    email: "emailErr",
-    phone: "phoneErr",
-    age: "ageErr",
-    state: "stateErr",
-    password: "passErr",
-    confPassword: "confPassErr",
-}
-
 function clearContent() {
-    for (const key in fields) {
-        document.getElementById(fields[key]).classList.remove("valid");
-        document.getElementById(fields[key]).classList.remove("invalid");
-        document.getElementById(errors[key]).innerHTML = "";
-    }
-    power.style.width = "0%";
-    power.style.backgroundColor = "#D73F40";
+    location.reload()
 }
 
 function setValidationClasses(field, isValid) {
@@ -68,35 +52,32 @@ function setValidationClasses(field, isValid) {
         field.classList.add("invalid");
     }
 }
-
+//flag 
 function validateName(event) {
     const nameField = event.currentTarget;
     const name = nameField.value.trim();
     const nameErr = document.getElementById(errors.name);
+    let isValid = false;
 
     if (name.length > maxContentLength) {
         nameErr.innerHTML = "*Name must be less than 1024 characters";
-        setValidationClasses(nameField, false);
-        submitButton.disabled = true;
-        return false;
+        isValid = false;
     }
-    if (!/^[a-zA-Z\s]+$/.test(name)) {    
-        nameErr.innerHTML = "*Only alphabets are allowed.";     
-        setValidationClasses(nameField, false);     
-        submitButton.disabled = true;
-        return false;
-    }
-    if (name.length < 3) {
+    else if (name.length < 3) {
         nameErr.innerHTML = "*Length should be greater than 3."; 
-        setValidationClasses(nameField, false);
-        submitButton.disabled = true;
-        return false;
-    }else{
-        nameErr.innerHTML = "";
-        setValidationClasses(nameField, true); 
-        submitButton.disabled = false;
-        return true;
+        isValid = false;
     }
+    else if (!/^[a-zA-Z\s]+$/.test(name)) {    
+        nameErr.innerHTML = "*Only alphabets are allowed.";     
+        isValid = false;
+    }
+    else{
+        nameErr.innerHTML = "";
+        isValid = true;
+    }
+    setValidationClasses(nameField, isValid);
+    submitButton.disabled = !isValid;
+    return true;
 }
 
 function validateEmail(event) {
@@ -104,71 +85,70 @@ function validateEmail(event) {
     const email = emailField.value.trim();
     const emailErr = document.getElementById(errors.email);
     const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    let isValid = false;
 
     if (!emailPattern.test(email)) {
         emailErr.innerHTML = "*Invalid Email Address.";
-        setValidationClasses(emailField, false);
-        submitButton.disabled = true;
-        return false;
+        isValid = false;
     }else{
         emailErr.innerHTML = "";
-        setValidationClasses(emailField, true);
-        submitButton.disabled = false;
-        return true;
+        isValid = true;
     } 
+    setValidationClasses(emailField, isValid);
+    submitButton.disabled = !isValid;
 }
 
 function validatePhone(event) {
     const phoneField = event.currentTarget;
     const phone = phoneField.value.trim();
     const phoneErr = document.getElementById(errors.phone);
+    let isValid = false;
 
     if (!/^\d{10}$/.test(phone)) {
         phoneErr.innerHTML = "*Phone number must be exactly 10 digits.";
-        setValidationClasses(phoneField, false);
-        submitButton.disabled = true;
-        return false;
+        isValid = false;
     }else{
         phoneErr.innerHTML = "";
-        setValidationClasses(phoneField, true);
-        submitButton.disabled = false;
-        return true;
+        isValid = true;
     } 
+    setValidationClasses(phoneField, isValid);
+    submitButton.disabled = !isValid;
+    return true;
 }
 
 function validateAge(event) {
     const ageField = event.currentTarget;
     const age = ageField.value.trim();
     const ageErr = document.getElementById(errors.age);
+    let isValid = false;
 
     if (age < 1 || age > 100) {
         ageErr.innerHTML = "*Age should be between 1 and 100.";
-        setValidationClasses(ageField, false);
-        submitButton.disabled = true;
-        return false;
+        isValid = false;
     }else{
         ageErr.innerHTML = "";
-        setValidationClasses(ageField, true);
-        submitButton.disabled = false;
-        return true;
+        isValid = true;
     } 
+    setValidationClasses(ageField, isValid);
+    submitButton.disabled = !isValid;
+    return true;
 }
 
 function validateState(event) {
     const stateField = event.currentTarget;
     const state = stateField.value;
     const stateErr = document.getElementById(errors.state);
+    let isValid = false;
     if (state === "") {
         stateErr.innerHTML = "*Please select a state.";
-        setValidationClasses(stateField, false);
-        submitButton.disabled = true;
-        return false;
+        isValid = false;
     }else{
         stateErr.innerHTML = "";
-        setValidationClasses(stateField, true);
-        submitButton.disabled = false;
-        return true;
+        isValid = true;
     }  
+    setValidationClasses(stateField, isValid);
+    submitButton.disabled = !isValid;
+    return true;
 }
 
 function validatePassword(event) {
@@ -177,21 +157,18 @@ function validatePassword(event) {
     const passErr = document.getElementById(errors.password);
     const widthPower = ["1%", "25%", "50%", "75%", "100%"];
     const colorPower = ["#D73F40", "#DC6551", "#F2B84F", "#BDE952", "#3ba62f"];
+    let isValid = false;
 
     if (password.length < 6) {
         passErr.innerHTML = "*Password should be at least 6 characters.";
         power.style.width = widthPower[0];
         power.style.backgroundColor = colorPower[0];
-        setValidationClasses(passwordField, false);
-        submitButton.disabled = true;
-        return false;
+        isValid = false;
     }
 
-    if (password.length > maxContentLength) {
+    else if (password.length > maxContentLength) {
         passErr.textContent = "*Password must be less than 1024 characters";
-        setValidationClasses(passwordField, false);
-        submitButton.disabled = true;
-        return false;
+        isValid = false;
     }
 
     else{
@@ -203,37 +180,37 @@ function validatePassword(event) {
         });
         power.style.width = widthPower[point];
         power.style.backgroundColor = colorPower[point];
-        setValidationClasses(passwordField, true);
-        submitButton.disabled = false;
-        return true;
+        isValid = true;
     }   
+    setValidationClasses(passwordField, isValid);
+    submitButton.disabled = !isValid;
+    return true;
 }
 
 function validateConfirmPassword(event) {
-    const passwordField = document.getElementById(fields.password);
+    const passwordField = document.getElementById("password");
     const confPasswordField = event.currentTarget;
     const password = passwordField.value;
     const confPassword = confPasswordField.value;
     const confPassErr = document.getElementById(errors.confPassword);
+    let isValid = false;
 
     if (confPassword !== password) {
         confPassErr.innerHTML = "*Passwords do not match.";
-        setValidationClasses(confPasswordField, false);
-        submitButton.disabled = true;
-        return false;
+        isValid = false;
     }else{
         confPassErr.innerHTML = "";
-        setValidationClasses(confPasswordField, true);
-        submitButton.disabled = false;
-        return true;
+        isValid = true;
     }   
+    setValidationClasses(confPasswordField, isValid);
+    submitButton.disabled = !isValid;
+    return true;
 }
 
 function togglePasswordVisibility() {
-    const passwordInput = document.getElementById(fields.password);
+    const passwordInput = document.getElementById("password");
     const type = passwordInput.getAttribute("type") === "password" ? "text" : "password";
     passwordInput.setAttribute("type", type);
-
     const eyeOpen = document.querySelector(".eye-open");
     const eyeClose = document.querySelector(".eye-close");
     if (type === "password") {
@@ -246,7 +223,7 @@ function togglePasswordVisibility() {
 }
 
 function submitForm(event){
-    const stateField = document.getElementById(fields.state);
+    const stateField = document.getElementById("state");
     const state = stateField.value;
     const stateErr = document.getElementById(errors.state);
     if (state === "") {
