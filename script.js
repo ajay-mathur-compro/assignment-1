@@ -210,7 +210,7 @@ function validatePassword(event) {
 }
 
 function validateConfirmPassword(event) {
-    const passwordField = document.getElementById("password");
+    const passwordField = document.getElementById(fields.password);
     const confPasswordField = event.currentTarget;
     const password = passwordField.value;
     const confPassword = confPasswordField.value;
@@ -230,7 +230,7 @@ function validateConfirmPassword(event) {
 }
 
 function togglePasswordVisibility() {
-    const passwordInput = document.getElementById("password");
+    const passwordInput = document.getElementById(fields.password);
     const type = passwordInput.getAttribute("type") === "password" ? "text" : "password";
     passwordInput.setAttribute("type", type);
 
