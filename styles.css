@@ -1,3 +1,4 @@
+
 body {
     display: flex;
     flex-direction: column;
@@ -15,7 +16,8 @@ h1 {
     text-align: center;
 }
 
-h4 {
+p{
+    font-size: large;
     margin-right: 5px;
 }
 
@@ -80,10 +82,10 @@ input:checked+.slider:before {
     transform: translateX(26px);
 }
 
-form {
+main {
     display: flex;
     flex-direction: column;
-    margin-top: 20px;
+    margin-top: 30px;
     margin-bottom: 10px;
     width: 60%;
     background: #f9f9f9;
@@ -95,7 +97,7 @@ form {
 label {
     display: block;
     margin-top: 10px;
-    margin-bottom: 5px;
+    margin-bottom: 20px;
     font-weight: bold;
 }
 
@@ -104,7 +106,7 @@ select,
 button {
     width: 100%;
     padding: 10px;
-    margin: 10px 0;
+    margin-bottom: 15px;
     border: 1px solid #ccc;
     border-radius: 5px;
     box-sizing: border-box;
@@ -159,6 +161,7 @@ button:hover:not(:disabled) {
     color: #e50000;
     font-size: 0.85em;
     margin-top: 5px;
+    margin-bottom: 5px;
 }
 
 .valid {
@@ -175,8 +178,8 @@ button:hover:not(:disabled) {
     background-color: #e0e0e0;
     border-radius: 5px;
     overflow: hidden;
-    margin-top: 23px;
-    margin-bottom: 15px;
+    margin-top: 25px;
+    margin-bottom: 25px;
 }
 
 #power-point {
@@ -199,7 +202,7 @@ button:hover:not(:disabled) {
 }
 
 #password {
-    width: 94%;
+    width: 94%; 
 }
 
 .toggle-password {
@@ -216,7 +219,7 @@ button:hover:not(:disabled) {
     color: white;
 }
 
-.dark h4 {
+.dark p {
     color: white;
 }
 
@@ -234,7 +237,7 @@ button:hover:not(:disabled) {
     cursor: not-allowed;
 }
 
-.dark form {
+.dark main {
     background-color: rgb(165, 155, 235);
     box-shadow: 0 4px 8px rgba(239, 7, 7, 0.2);
 }
@@ -245,7 +248,7 @@ button:hover:not(:disabled) {
 }
 
 @media (max-width: 816px) {
-    form {
+    main {
         width: 90%;
     }
 }
