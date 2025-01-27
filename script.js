@@ -253,15 +253,6 @@ function validateForm() {
 }
 
 function submitForm(event) {
-  event.preventDefault();
-  const stateField = document.getElementById("state");
-  const state = stateField.value;
-  const stateErr = document.getElementById(errors.state);
-  if (state === "") {
-    stateErr.innerHTML = "*Please select a state.";
-    setValidationClasses(stateField, false);
-    return;
-  }
   alert("Form submitted successfully!");
   location.reload();
 }
