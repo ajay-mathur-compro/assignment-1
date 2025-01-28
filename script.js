@@ -1,6 +1,4 @@
 const maxContentLength = 1024;
-const power = document.getElementById("power-point");
-const submitButton = document.getElementById("submit");
 
 const Theme = {
   LIGHT: "light",
@@ -68,7 +66,7 @@ function setValidationClasses(field, isValid) {
     field.classList.add("invalid");
   }
 }
-//flag
+
 function validateName(event) {
   const nameField = event.currentTarget;
   const name = nameField.value.trim();
@@ -90,7 +88,7 @@ function validateName(event) {
   }
   setValidationClasses(nameField, isValid);
   isFormValid.name = isValid;
-  validateForm();
+  enableSubmit();
   return true;
 }
 
@@ -110,7 +108,7 @@ function validateEmail(event) {
   }
   setValidationClasses(emailField, isValid);
   isFormValid.email = isValid;
-  validateForm();
+  enableSubmit();
   return true;
 }
 
@@ -129,7 +127,7 @@ function validatePhone(event) {
   }
   setValidationClasses(phoneField, isValid);
   isFormValid.phone = isValid;
-  validateForm();
+  enableSubmit();
   return true;
 }
 
@@ -148,7 +146,7 @@ function validateAge(event) {
   }
   setValidationClasses(ageField, isValid);
   isFormValid.age = isValid;
-  validateForm();
+  enableSubmit();
   return true;
 }
 
@@ -166,14 +164,16 @@ function validateState(event) {
   }
   setValidationClasses(stateField, isValid);
   isFormValid.state = isValid;
-  validateForm();
+  enableSubmit();
   return true;
 }
 
 function validatePassword(event) {
   const passwordField = event.currentTarget;
   const password = passwordField.value;
+  const confirmPassword = document.getElementById("confPassword");
   const passErr = document.getElementById(errors.password);
+  const power = document.getElementById("power-point");
   const widthPower = ["1%", "25%", "50%", "75%", "100%"];
   const colorPower = ["#D73F40", "#DC6551", "#F2B84F", "#BDE952", "#3ba62f"];
   let isValid = false;
@@ -199,8 +199,10 @@ function validatePassword(event) {
   }
   setValidationClasses(passwordField, isValid);
   isFormValid.password = isValid;
-  validateConfirmPassword();
-  validateForm();
+  if (confirmPassword.value !== "") {
+    validateConfirmPassword();
+  }
+  enableSubmit();
   return true;
 }
 
@@ -223,7 +225,7 @@ function validateConfirmPassword(event) {
   }
   setValidationClasses(confPasswordField, isValid);
   isFormValid.confPassword = isValid;
-  validateForm();
+  enableSubmit();
   return true;
 }
 
@@ -242,7 +244,8 @@ function togglePasswordVisibility() {
     eyeClose.style.display = "inline";
   }
 }
-function validateForm() {
+function enableSubmit() {
+  const submitButton = document.getElementById("submit");
   for (const key in isFormValid) {
     if (!isFormValid[key]) {
       submitButton.disabled = true;
