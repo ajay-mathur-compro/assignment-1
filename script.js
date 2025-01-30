@@ -8,23 +8,14 @@ const Theme = {
 const isFormValid = {
   name: false,
   email: false,
-  phone: false,
-  age: false,
   state: false,
   password: false,
   confPassword: false,
 };
 
-const errors = {
-  name: "nameErr",
-  email: "emailErr",
-  phone: "phoneErr",
-  age: "ageErr",
-  state: "stateErr",
-  password: "passErr",
-  confPassword: "confPassErr",
-};
-
+/**
+ * Toggles the dark mode theme for the webpage.
+ */
 function toggleDarkMode() {
   var element = document.body;
   element.classList.toggle(Theme.DARK);
@@ -39,6 +30,9 @@ function toggleDarkMode() {
   }
 }
 
+/**
+ * Initializes the theme based on the saved preference in localStorage.
+ */
 window.onload = function () {
   const savedTheme = localStorage.getItem("theme");
   const toggleSwitch = document.getElementById("toggle");
@@ -53,27 +47,48 @@ window.onload = function () {
   }
 };
 
+/**
+ * Clears the form content by reloading the page.
+ */
 function clearContent() {
   location.reload();
 }
 
+/**
+ * Sets the validation classes on a form field based on its validity.
+ *
+ * @param {HTMLElement} field - The form field element to update.
+ * @param {boolean} isValid - A boolean indicating whether the field is valid.
+ */
 function setValidationClasses(field, isValid) {
-  if (isValid) {
-    field.classList.remove("invalid");
-    field.classList.add("valid");
+  if (field.value.trim() === "") {
+    // Reset to default styles if the field is empty
+    field.style.setProperty("--border-color", "#ccc");
+    field.style.setProperty("--box-shadow-color", "transparent");
+  } else if (isValid) {
+    field.style.setProperty("--border-color", "green");
+    field.style.setProperty("--box-shadow-color", "rgba(0, 255, 0, 0.5)");
   } else {
-    field.classList.remove("valid");
-    field.classList.add("invalid");
+    field.style.setProperty("--border-color", "red");
+    field.style.setProperty("--box-shadow-color", "rgba(255, 0, 0, 0.5)");
   }
 }
 
+/**
+ * Validates the name field.
+ *
+ * @param {Event} event - The event object.
+ * @returns {boolean} - Returns true if the validation is successful.
+ */
 function validateName(event) {
   const nameField = event.currentTarget;
   const name = nameField.value.trim();
-  const nameErr = document.getElementById(errors.name);
+  const nameErr = nameField.nextElementSibling;
   let isValid = false;
-
-  if (name.length > maxContentLength) {
+  if (name === "") {
+    nameErr.innerHTML = "";
+    isValid = false;
+  } else if (name.length > maxContentLength) {
     nameErr.innerHTML = "*Name must be less than 1024 characters";
     isValid = false;
   } else if (name.length < 3) {
@@ -88,18 +103,28 @@ function validateName(event) {
   }
   setValidationClasses(nameField, isValid);
   isFormValid.name = isValid;
-  enableSubmit();
+  toggleSubmit();
   return true;
 }
 
+/**
+ * Validates the email field.
+ *
+ * @param {Event} event - The event object.
+ * @returns {boolean} - Returns true if the validation is successful.
+ */
 function validateEmail(event) {
   const emailField = event.currentTarget;
   const email = emailField.value.trim();
-  const emailErr = document.getElementById(errors.email);
-  const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+  const emailErr = emailField.nextElementSibling;
+  const emailPattern =
+    /^[a-zA-Z0-9][a-zA-Z0-9.]*@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
   let isValid = false;
 
-  if (!emailPattern.test(email)) {
+  if (email === "") {
+    emailErr.innerHTML = "";
+    isValid = false;
+  } else if (!emailPattern.test(email)) {
     emailErr.innerHTML = "*Invalid Email Address.";
     isValid = false;
   } else {
@@ -108,54 +133,21 @@ function validateEmail(event) {
   }
   setValidationClasses(emailField, isValid);
   isFormValid.email = isValid;
-  enableSubmit();
+  toggleSubmit();
   return true;
 }
-
-function validatePhone(event) {
-  const phoneField = event.currentTarget;
-  const phone = phoneField.value.trim();
-  const phoneErr = document.getElementById(errors.phone);
-  let isValid = false;
-
-  if (!/^\d{10}$/.test(phone)) {
-    phoneErr.innerHTML = "*Phone number must be exactly 10 digits.";
-    isValid = false;
-  } else {
-    phoneErr.innerHTML = "";
-    isValid = true;
-  }
-  setValidationClasses(phoneField, isValid);
-  isFormValid.phone = isValid;
-  enableSubmit();
-  return true;
-}
-
-function validateAge(event) {
-  const ageField = event.currentTarget;
-  const age = ageField.value.trim();
-  const ageErr = document.getElementById(errors.age);
-  let isValid = false;
-
-  if (age < 1 || age > 100) {
-    ageErr.innerHTML = "*Age should be between 1 and 100.";
-    isValid = false;
-  } else {
-    ageErr.innerHTML = "";
-    isValid = true;
-  }
-  setValidationClasses(ageField, isValid);
-  isFormValid.age = isValid;
-  enableSubmit();
-  return true;
-}
-
+/**
+ * Validates the state field.
+ *
+ * @param {Event} event - The event object.
+ * @returns {boolean} - Returns true if the validation is successful.
+ */
 function validateState(event) {
   const stateField = event.currentTarget;
   const state = stateField.value;
-  const stateErr = document.getElementById(errors.state);
+  const stateErr = stateField.nextElementSibling;
   let isValid = false;
-  if (state === "") {
+  if (state === "default") {
     stateErr.innerHTML = "*Please select a state.";
     isValid = false;
   } else {
@@ -164,24 +156,40 @@ function validateState(event) {
   }
   setValidationClasses(stateField, isValid);
   isFormValid.state = isValid;
-  enableSubmit();
+  toggleSubmit();
   return true;
 }
 
+/**
+ * Validates the password field.
+ *
+ * @param {Event} event - The event object.
+ * @returns {boolean} - Returns true if the validation is successful.
+ */
 function validatePassword(event) {
   const passwordField = event.currentTarget;
   const password = passwordField.value;
   const confirmPassword = document.getElementById("confPassword");
-  const passErr = document.getElementById(errors.password);
+  const passErr = document.getElementById("passErr");
   const power = document.getElementById("power-point");
+  const passwordStrength = document.getElementById("password-strength");
   const widthPower = ["1%", "25%", "50%", "75%", "100%"];
   const colorPower = ["#D73F40", "#DC6551", "#F2B84F", "#BDE952", "#3ba62f"];
   let isValid = false;
 
-  if (password.length < 6) {
+  if (password === "") {
+    passErr.innerHTML = "";
+    power.style.width = "0%";
+    power.style.backgroundColor = "#D73F40";
+    passwordStrength.textContent = "";
+    passwordStrength.className = "password-strength";
+    isValid = false;
+  } else if (password.length < 6) {
     passErr.innerHTML = "*Password should be at least 6 characters.";
     power.style.width = widthPower[0];
     power.style.backgroundColor = colorPower[0];
+    passwordStrength.textContent = "Poor";
+    passwordStrength.className = "password-strength poor";
     isValid = false;
   } else if (password.length > maxContentLength) {
     passErr.textContent = "*Password must be less than 1024 characters";
@@ -195,6 +203,22 @@ function validatePassword(event) {
     });
     power.style.width = widthPower[point];
     power.style.backgroundColor = colorPower[point];
+
+    // Set password strength text and class
+    if (point === 1) {
+      passwordStrength.textContent = "Poor!";
+      passwordStrength.className = "password-strength poor";
+    } else if (point === 2) {
+      passwordStrength.textContent = "Good!";
+      passwordStrength.className = "password-strength good";
+    } else if (point === 3) {
+      passwordStrength.textContent = "Great!";
+      passwordStrength.className = "password-strength great";
+    } else if (point === 4) {
+      passwordStrength.textContent = "Excellent!";
+      passwordStrength.className = "password-strength excellent";
+    }
+
     isValid = true;
   }
   setValidationClasses(passwordField, isValid);
@@ -202,10 +226,16 @@ function validatePassword(event) {
   if (confirmPassword.value !== "") {
     validateConfirmPassword();
   }
-  enableSubmit();
+  toggleSubmit();
   return true;
 }
 
+/**
+ * Validates the confirm password field.
+ *
+ * @param {Event} event - The event object.
+ * @returns {boolean} - Returns true if the validation is successful.
+ */
 function validateConfirmPassword(event) {
   const passwordField = document.getElementById("password");
   const confPasswordField = event
@@ -213,10 +243,13 @@ function validateConfirmPassword(event) {
     : document.getElementById("confPassword");
   const password = passwordField.value;
   const confPassword = confPasswordField.value;
-  const confPassErr = document.getElementById(errors.confPassword);
+  const confPassErr = confPasswordField.nextElementSibling;
   let isValid = false;
 
-  if (confPassword !== password) {
+  if (confPassword === "") {
+    confPassErr.innerHTML = "";
+    isValid = false;
+  } else if (confPassword !== password) {
     confPassErr.innerHTML = "*Passwords do not match.";
     isValid = false;
   } else {
@@ -225,12 +258,16 @@ function validateConfirmPassword(event) {
   }
   setValidationClasses(confPasswordField, isValid);
   isFormValid.confPassword = isValid;
-  enableSubmit();
+  toggleSubmit();
   return true;
 }
 
-function togglePasswordVisibility() {
-  const passwordInput = document.getElementById("password");
+/**
+ * Toggles the visibility of the password field.
+ * use event
+ */
+function togglePasswordVisibility(event) {
+  const passwordInput = event.currentTarget.previousElementSibling;
   const type =
     passwordInput.getAttribute("type") === "password" ? "text" : "password";
   passwordInput.setAttribute("type", type);
@@ -244,8 +281,12 @@ function togglePasswordVisibility() {
     eyeClose.style.display = "inline";
   }
 }
-function enableSubmit() {
-  const submitButton = document.getElementById("submit");
+
+/**
+ * Toggles the submit button based on the form's validity.
+ */
+const submitButton = document.getElementById("submit");
+function toggleSubmit() {
   for (const key in isFormValid) {
     if (!isFormValid[key]) {
       submitButton.disabled = true;
@@ -255,6 +296,11 @@ function enableSubmit() {
   submitButton.disabled = false;
 }
 
+/**
+ * Handles the form submission.
+ *
+ * @param {Event} event - The event object.
+ */
 function submitForm(event) {
   alert("Form submitted successfully!");
   location.reload();

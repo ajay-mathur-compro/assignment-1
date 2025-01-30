@@ -1,3 +1,4 @@
+/* General styles for the body */
 body {
   display: flex;
   flex-direction: column;
@@ -7,27 +8,30 @@ body {
   min-height: 100vh;
   background-color: white;
   color: black;
-  font-size: 16px;
-  font-family: Arial, sans-serif;
+  font: 16px Arial, sans-serif;
 }
 
-h1 {
+/* Center-align text for headings and paragraphs */
+h1,
+p {
   text-align: center;
 }
 
+/* Styles for paragraphs */
 p {
   font-size: large;
   margin-right: 5px;
 }
 
+/* Container for the theme toggle switch */
 #toggle-container {
   display: flex;
   justify-content: flex-end;
   width: 100%;
-  margin-top: 20px;
-  margin-right: 40px;
+  margin: 20px 40px 0 0;
 }
 
+/* Styles for the toggle switch */
 .switch {
   position: relative;
   display: inline-block;
@@ -35,20 +39,24 @@ p {
   height: 34px;
 }
 
+/* Hide the default checkbox */
 .switch input {
   opacity: 0;
   width: 0;
   height: 0;
 }
 
+/* Focus styles for the slider */
 .switch input:focus + .slider {
   box-shadow: 0 0 3px 3px #2196f3;
 }
 
+/* Focus styles for the slider in dark mode */
 .dark .switch input:focus + .slider {
   box-shadow: 0 0 3px 3px #65f149;
 }
 
+/* Styles for the slider */
 .slider {
   position: absolute;
   cursor: pointer;
@@ -61,7 +69,8 @@ p {
   border-radius: 34px;
 }
 
-.slider:before {
+/* Styles for the slider thumb */
+.slider::before {
   position: absolute;
   content: "";
   height: 26px;
@@ -73,19 +82,21 @@ p {
   border-radius: 50%;
 }
 
+/* Styles for the slider when checked */
 input:checked + .slider {
   background-color: #2196f3;
 }
 
-input:checked + .slider:before {
+/* Styles for the slider thumb when checked */
+input:checked + .slider::before {
   transform: translateX(26px);
 }
 
+/* Styles for the main content area */
 main {
   display: flex;
   flex-direction: column;
-  margin-top: 30px;
-  margin-bottom: 10px;
+  margin: 30px 0 10px;
   width: 60%;
   background: #f9f9f9;
   padding: 30px;
@@ -93,43 +104,50 @@ main {
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
 }
 
+/* Styles for labels */
 label {
   display: block;
-  margin-top: 10px;
-  margin-bottom: 20px;
+  margin: 10px 0 20px;
   font-weight: bold;
 }
 
+/* Styles for input, select, and button elements */
 input,
 select,
 button {
   width: 100%;
   padding: 10px;
   margin-bottom: 15px;
-  border: 1px solid #ccc;
   border-radius: 5px;
   box-sizing: border-box;
+  border: 2px solid var(--border-color, #ccc); /* Default border color */
+  box-shadow: 0 0 5px var(--box-shadow-color, transparent); /* Default box shadow color */
+  transition: border-color 0.3s, box-shadow 0.3s;
+
 }
 
+/* Focus styles for input and select elements */
 input:focus,
-select:focus {
-  border-color: #007bff;
+select:focus,input:hover,
+select:hover,
+button:focus,
+button:hover {
+  box-shadow: 0 0 4px 4px #2196f3;  ;
   outline: none;
 }
 
+/* Styles for select elements */
 select {
   margin-top: 10px;
   cursor: pointer;
   font-size: 14px;
   appearance: none;
-  -webkit-appearance: none;
-  -moz-appearance: none;
   background: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12'%3e%3cpath d='M6 9L1 4h10L6 9z' fill='%23666666'/%3e%3c/svg%3e")
-    no-repeat;
-  background-position: calc(100% - 15px) center;
+    no-repeat calc(100% - 15px) center;
   background-color: white;
 }
 
+/* Styles for buttons */
 button {
   background-color: #006ee5;
   color: white;
@@ -138,50 +156,92 @@ button {
   transition: background-color 0.3s;
 }
 
+/* Styles for disabled buttons */
 button:disabled {
   background-color: #ccc;
   cursor: not-allowed;
 }
 
+/* Hover styles for buttons */
 button:hover:not(:disabled) {
   background-color: #0056b3;
 }
 
+/* Margin for the submit button */
 #submit {
-  margin-left: 0;
   margin-right: 15px;
 }
 
+
+/* Styles for the reset button */
 #reset {
-  background-color: #444444;
+  background-color: transparent;
+  border: 2px solid #393939;
+  color: #393939;
+  cursor: pointer;
+  transition: background-color 0.3s, color 0.3s;
+}
+#reset:hover, #reset:focus {
+  background-color: #393939;
   color: white;
 }
 
+/* Styles for error messages */
 .error {
   color: #e50000;
   font-size: 0.85em;
-  margin-top: 5px;
-  margin-bottom: 5px;
+  margin: 5px 0;
 }
 
-.valid {
-  border: 2px solid green;
+/* Styles for the info icon */
+.info-icon {
+  margin-left: 10px;
+  cursor: pointer;
+  color: #007bff;
+  vertical-align: middle;
 }
 
-.invalid {
-  border: 2px solid red;
+.info-icon i {
+  font-size: 1.2em;
+}
+#Password {
+  display: inline-block;
+  margin-right: 5px;
 }
 
+/* Styles for the password strength indicator */
+.password-strength {
+  margin-top: 10px;
+  font-size: 1.1em;
+  font-weight: bold;
+}
+
+.password-strength.poor {
+  color: #6a1c1d;
+}
+
+.password-strength.good {
+  color: #672700;
+}
+
+.password-strength.great {
+  color: #1b4302;
+}
+
+.password-strength.excellent {
+  color: #144410;
+}
+/* Styles for the password strength container */
 .power-container {
   width: 100%;
   height: 8px;
   background-color: #e0e0e0;
   border-radius: 5px;
   overflow: hidden;
-  margin-top: 25px;
-  margin-bottom: 25px;
+  margin: 25px 0;
 }
 
+/* Styles for the password strength indicator */
 #power-point {
   height: 100%;
   width: 0;
@@ -189,70 +249,71 @@ button:hover:not(:disabled) {
   transition: width 0.3s ease-in-out;
 }
 
+/* Styles for the button container */
 .button-container {
   display: flex;
   justify-content: center;
   margin-top: 10px;
 }
 
+/* Styles for the password container */
 .password-container {
   display: flex;
-  flex-direction: row;
+  align-items: center;
   width: 100%;
 }
 
+/* Styles for the password input field */
 #password {
   width: 94%;
 }
 
+/* Styles for the toggle password button */
 .toggle-password {
   width: 4%;
   cursor: pointer;
   background-color: #808080;
 }
 
+/* Dark mode styles */
 .dark {
   background-color: #333;
 }
 
-.dark h1 {
+/* Dark mode styles for headings, paragraphs, and error messages */
+.dark h1,
+.dark p,
+.dark .error {
   color: white;
 }
 
-.dark p {
-  color: white;
-}
-
+/* Dark mode styles for error messages */
 .dark .error {
   color: #770000;
 }
 
-.dark #submit {
-  background-color: #444444;
-  color: white;
-}
+/* Dark mode styles for the submit button */
 
-.dark #submit:disabled {
+.dark #submit :disabled {
   background-color: #ccc;
   cursor: not-allowed;
 }
-
+/* Dark mode styles for the main content area */
 .dark main {
   background-color: rgb(165, 155, 235);
   box-shadow: 0 4px 8px rgba(239, 7, 7, 0.2);
 }
 
-.dark #reset {
-  background-color: #006ee5;
-  color: white;
-}
 
+
+/* Responsive styles for screens with a max width of 816px */
 @media (max-width: 816px) {
   main {
     width: 90%;
   }
 }
 
+/* Responsive styles for screens with a max width of 1300px */
 @media (max-width: 1300px) {
   #password {
     width: 100%;
