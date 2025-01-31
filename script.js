@@ -13,6 +13,14 @@ const isFormValid = {
   confPassword: false,
 };
 
+const isFormValidProxy = new Proxy(isFormValid, {
+  set(target, property, value) {
+    target[property] = value;
+    toggleSubmit();
+    return true;
+  }
+});
+
 /**
  * Toggles the dark mode theme for the webpage.
  */
@@ -102,8 +110,7 @@ function validateName(event) {
     isValid = true;
   }
   setValidationClasses(nameField, isValid);
-  isFormValid.name = isValid;
-  toggleSubmit();
+  isFormValidProxy.name = isValid;
   return true;
 }
 
@@ -132,8 +139,7 @@ function validateEmail(event) {
     isValid = true;
   }
   setValidationClasses(emailField, isValid);
-  isFormValid.email = isValid;
-  toggleSubmit();
+  isFormValidProxy.email = isValid;
   return true;
 }
 /**
@@ -155,8 +161,7 @@ function validateState(event) {
     isValid = true;
   }
   setValidationClasses(stateField, isValid);
-  isFormValid.state = isValid;
-  toggleSubmit();
+  isFormValidProxy.state = isValid;
   return true;
 }
 
@@ -222,11 +227,10 @@ function validatePassword(event) {
     isValid = true;
   }
   setValidationClasses(passwordField, isValid);
-  isFormValid.password = isValid;
+  isFormValidProxy.password = isValid;
   if (confirmPassword.value !== "") {
     validateConfirmPassword();
   }
-  toggleSubmit();
   return true;
 }
 
@@ -257,8 +261,7 @@ function validateConfirmPassword(event) {
     isValid = true;
   }
   setValidationClasses(confPasswordField, isValid);
-  isFormValid.confPassword = isValid;
-  toggleSubmit();
+  isFormValidProxy.confPassword = isValid;
   return true;
 }
 
@@ -288,13 +291,8 @@ function togglePasswordVisibility(event) {
  */
 const submitButton = document.getElementById("submit");
 function toggleSubmit() {
-  for (const key in isFormValid) {
-    if (!isFormValid[key]) {
-      submitButton.disabled = true;
-      return;
-    }
-  }
-  submitButton.disabled = false;
+  const isFormInvalid = Object.values(isFormValid).some((isValid) => !isValid);
+  submitButton.disabled = isFormInvalid;
 }
 
 /**
