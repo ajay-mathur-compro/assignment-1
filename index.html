@@ -91,7 +91,10 @@
           onkeypress="return event.charCode >= 48 && event.charCode <= 57"
           required
           aria-labelledby="Phone"
+          minlength="10"
           maxlength="10"
+          pattern="\d{10}"
+          title="Phone number must be exactly 10 digits."
         />
         <!-- Phone input field with validation -->
         <br />
@@ -105,6 +108,7 @@
           required
           aria-labelledby="Age"
           maxlength="2"
+          title="Age should be between 1 and 99."
         />
         <!-- Age input field with validation -->
         <br />
