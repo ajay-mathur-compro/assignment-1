@@ -13,12 +13,14 @@ const isFormValid = {
   confPassword: false,
 };
 
+// Create a Proxy for the isFormValid object to automatically call toggleSubmit
+// whenever any property of isFormValid changes.
 const isFormValidProxy = new Proxy(isFormValid, {
   set(target, property, value) {
     target[property] = value;
     toggleSubmit();
     return true;
-  }
+  },
 });
 
 /**
@@ -179,7 +181,7 @@ function validatePassword(event) {
   const power = document.getElementById("power-point");
   const passwordStrength = document.getElementById("password-strength");
   const widthPower = ["1%", "25%", "50%", "75%", "100%"];
-  const colorPower = ["#D73F40", "#DC6551", "#F2B84F", "#BDE952", "#3ba62f"];
+  const colorPower = ["#DC2626", "#F97316", "#EAB308", "#16A34A", "#166534"];
   let isValid = false;
 
   if (password === "") {

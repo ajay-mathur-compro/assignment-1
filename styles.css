@@ -123,17 +123,24 @@ button {
   border: 2px solid var(--border-color, #ccc); /* Default border color */
   box-shadow: 0 0 5px var(--box-shadow-color, transparent); /* Default box shadow color */
   transition: border-color 0.3s, box-shadow 0.3s;
-
 }
 
 /* Focus styles for input and select elements */
 input:focus,
-select:focus,input:hover,
-select:hover,
-button:focus,
-button:hover {
-  box-shadow: 0 0 4px 4px #2196f3;  ;
+select:focus,
+input:hover,
+select:hover {
+  box-shadow: 0 0 4px 4px #2196f3;
   outline: none;
+}
+/* Margin for the submit button */
+#submit {
+  margin-right: 15px;
+}
+
+/* Focus styles for the submit button */
+#submit:focus {
+  border: 0 0 4px 4px #0a0a0a;
 }
 
 /* Styles for select elements */
@@ -162,17 +169,6 @@ button:disabled {
   cursor: not-allowed;
 }
 
-/* Hover styles for buttons */
-button:hover:not(:disabled) {
-  background-color: #0056b3;
-}
-
-/* Margin for the submit button */
-#submit {
-  margin-right: 15px;
-}
-
-
 /* Styles for the reset button */
 #reset {
   background-color: transparent;
@@ -181,7 +177,8 @@ button:hover:not(:disabled) {
   cursor: pointer;
   transition: background-color 0.3s, color 0.3s;
 }
-#reset:hover, #reset:focus {
+#reset:hover,
+#reset:focus {
   background-color: #393939;
   color: white;
 }
@@ -204,9 +201,8 @@ button:hover:not(:disabled) {
 .info-icon i {
   font-size: 1.2em;
 }
-#Password {
+#password-info {
   display: inline-block;
-  margin-right: 5px;
 }
 
 /* Styles for the password strength indicator */
@@ -257,15 +253,15 @@ button:hover:not(:disabled) {
 }
 
 /* Styles for the password container */
-.password-container {
+#password-container {
   display: flex;
-  align-items: center;
   width: 100%;
 }
 
 /* Styles for the password input field */
 #password {
-  width: 94%;
+  width: 96%;
+  margin-right: 10px;
 }
 
 /* Styles for the toggle password button */
@@ -282,8 +278,7 @@ button:hover:not(:disabled) {
 
 /* Dark mode styles for headings, paragraphs, and error messages */
 .dark h1,
-.dark p,
-.dark .error {
+.dark p {
   color: white;
 }
 
@@ -303,8 +298,6 @@ button:hover:not(:disabled) {
   background-color: rgb(165, 155, 235);
   box-shadow: 0 4px 8px rgba(239, 7, 7, 0.2);
 }
-
-
 
 /* Responsive styles for screens with a max width of 816px */
 @media (max-width: 816px) {
