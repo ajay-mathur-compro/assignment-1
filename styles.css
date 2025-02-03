@@ -51,11 +51,6 @@ p {
   box-shadow: 0 0 3px 3px #2196f3;
 }
 
-/* Focus styles for the slider in dark mode */
-.dark .switch input:focus + .slider {
-  box-shadow: 0 0 3px 3px #65f149;
-}
-
 /* Styles for the slider */
 .slider {
   position: absolute;
@@ -276,6 +271,17 @@ button:disabled {
   background-color: #333;
 }
 
+/* Dark mode styles for the main content area */
+.dark main {
+  background-color: rgb(165, 155, 235);
+  box-shadow: 0 4px 8px rgba(239, 7, 7, 0.2);
+}
+
+/* Focus styles for the slider in dark mode */
+.dark .switch input:focus + .slider {
+  box-shadow: 0 0 3px 3px #65f149;
+}
+
 /* Dark mode styles for headings, paragraphs, and error messages */
 .dark h1,
 .dark p {
@@ -292,11 +298,6 @@ button:disabled {
 .dark #submit :disabled {
   background-color: #ccc;
   cursor: not-allowed;
-}
-/* Dark mode styles for the main content area */
-.dark main {
-  background-color: rgb(165, 155, 235);
-  box-shadow: 0 4px 8px rgba(239, 7, 7, 0.2);
 }
 
 /* Responsive styles for screens with a max width of 816px */

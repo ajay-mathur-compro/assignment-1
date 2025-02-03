@@ -13,7 +13,7 @@ const isFormValid = {
   confPassword: false,
 };
 
-// Create a Proxy for the isFormValid object to automatically call toggleSubmit
+// Proxy for the isFormValid object to automatically call toggleSubmit
 // whenever any property of isFormValid changes.
 const isFormValidProxy = new Proxy(isFormValid, {
   set(target, property, value) {

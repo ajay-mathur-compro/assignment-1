@@ -1,18 +1,18 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <meta charset="UTF-8" />
+    <meta charset="UTF-8" >
     <!-- Character encoding for the document -->
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" >
     <!-- Viewport settings for responsive design -->
     <title>Assignment</title>
     <!-- Title of the document -->
-    <link rel="stylesheet" href="styles.css" />
+    <link rel="stylesheet" href="styles.css" >
     <!-- Link to external CSS file -->
     <link
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"
-    />
+    >
     <!-- Link to Font Awesome for icons -->
   </head>
 
@@ -26,7 +26,7 @@
           id="toggle"
           onclick="toggleDarkMode()"
           aria-label="Switch Theme"
-        />
+        >
         <!-- Checkbox for toggling dark mode -->
         <span class="slider round"></span>
         <!-- Slider for the toggle switch -->
@@ -52,7 +52,7 @@
           aria-labelledby="Name"
           onblur="validateName(event)"
           required
-        />
+        >
         <!-- Name input field with validation -->
         <span
           class="error"
@@ -61,7 +61,7 @@
           aria-live="assertive"
         ></span>
         <!-- Error message for name input -->
-        <br />
+        <br >
         <label id="Email">Email:</label>
         <!-- Label for email input -->
         <input
@@ -72,7 +72,7 @@
           required
           aria-labelledby="Email"
           onblur="validateEmail(event)"
-        />
+        >
         <!-- Email input field with validation -->
         <span
           class="error"
@@ -81,7 +81,7 @@
           aria-live="assertive"
         ></span>
         <!-- Error message for email input -->
-        <br />
+        <br >
         <label id="Phone">Phone Number:</label>
         <!-- Label for phone input -->
         <input
@@ -95,9 +95,9 @@
           maxlength="10"
           pattern="\d{10}"
           title="Phone number must be exactly 10 digits."
-        />
+        >
         <!-- Phone input field with validation -->
-        <br />
+        <br >
         <label id="Age">Age:</label>
         <!-- Label for age input -->
         <input
@@ -109,9 +109,9 @@
           aria-labelledby="Age"
           maxlength="2"
           title="Age should be between 1 and 99."
-        />
+        >
         <!-- Age input field with validation -->
-        <br />
+        <br >
         <label id="Address">Address:</label>
         <!-- Label for address input -->
         <input
@@ -120,7 +120,7 @@
           name="address"
           required
           aria-labelledby="Address"
-        />
+        >
         <!-- Address input field -->
         <span
           class="error"
@@ -129,7 +129,7 @@
           aria-live="assertive"
         ></span>
         <!-- Error message for address input -->
-        <br />
+        <br >
         <label id="State">State: </label>
         <!-- Label for state select -->
         <select
@@ -185,7 +185,7 @@
           aria-live="assertive"
         ></span>
         <!-- Error message for state select -->
-        <br />
+        <br >
         <label for = "password" id="password-info">Password</label>
         <span
           role="button"
@@ -203,9 +203,9 @@
             id="password"
             name="password"
             required
-            aria-labelledby="Password"
+            aria-labelledby="password"
             onblur  ="validatePassword(event)"
-          />
+          >
           <!-- Password input field with validation -->
           <button
             type="button"
@@ -229,7 +229,7 @@
           aria-live="assertive"
         ></span>
         <!-- Error message for password input -->
-        <br />
+        <br >
         <label id="strengthLabel" aria-label="Strength of password">
           Strength of password
         </label>
@@ -248,7 +248,7 @@
           required
           aria-labelledby="ConfirmPassword"
           oninput="validateConfirmPassword(event)"
-        />
+        >
         <!-- Confirm password input field with validation -->
         <span
           class="error"
@@ -257,7 +257,7 @@
           aria-live="assertive"
         ></span>
         <!-- Error message for confirm password input -->
-        <br />
+        <br >
         <div class="button-container">
           <button id="submit" type="submit" value="Submit" disabled>
             Submit
