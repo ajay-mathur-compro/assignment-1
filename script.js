@@ -26,7 +26,7 @@ const isFormValidProxy = new Proxy(isFormValid, {
 /**
  * Toggles the dark mode theme for the webpage.
  */
-function toggleDarkMode() {
+function toggleDarkMode(event) {
   var element = document.body;
   element.classList.toggle(Theme.DARK);
   const themeAnnouncement = document.getElementById("theme-announcement");

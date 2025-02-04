@@ -125,7 +125,7 @@ input:focus,
 select:focus,
 input:hover,
 select:hover {
-  box-shadow: 0 0 4px 4px #2196f3;
+  box-shadow: 0 0 2px 2px #2196f3;
   outline: none;
 }
 /* Margin for the submit button */
@@ -134,9 +134,10 @@ select:hover {
 }
 
 /* Focus styles for the submit button */
-#submit:focus {
-  border: 0 0 4px 4px #0a0a0a;
+#submit:focus, #submit:hover:enabled {
+  background-color: #09478a
 }
+
 
 /* Styles for select elements */
 select {
@@ -273,7 +274,7 @@ button:disabled {
 
 /* Dark mode styles for the main content area */
 .dark main {
-  background-color: rgb(165, 155, 235);
+  background-color: #a4b2e6;
   box-shadow: 0 4px 8px rgba(239, 7, 7, 0.2);
 }
 
