@@ -1,3 +1,21 @@
+//Event listener for drops outside the drop zone
+
+document.body.addEventListener("dragover", (event) => {
+  event.preventDefault();
+  event.stopPropagation();
+});
+
+document.body.addEventListener("drop", (event) => {
+  event.preventDefault();
+  event.stopPropagation();
+
+  // Check if the drop target is not the drop zone or its children
+  const dropZone = document.getElementById("drop-area");
+  if (!dropZone.contains(event.target)) {
+    alert("Please drop the file in the designated drop area.");
+  }
+});
+
 // Handle drag over event to prevent default behavior
 function handleDragOver(event) {
   event.preventDefault();
@@ -53,6 +71,7 @@ function validateCSV(data) {
     alert("CSV file is empty after parsing.");
     return;
   }
+  console.log(data);
 
   // Display the validation results section
   document.getElementById("validation-results").style.display = "block";
@@ -98,6 +117,8 @@ function validateCSV(data) {
   ];
   const allowedBaseURLs = ["VHL_CENTRAL_M3A", "VHL_CENTRAL_ASSETS"];
 
+  const numericColumns = ["x", "y", "h", "w"];
+  
   // Helper function to update display
   function updateUI(id, passed, message) {
     const iconEl = document.getElementById(`${id}-icon`);
@@ -183,7 +204,6 @@ function validateCSV(data) {
     : "FAILED Structural validation";
   structuralBanner.style.display = "block";
 
-
   // Data Validation
   const dataSection = document.getElementById("data-section");
   const dataBanner = document.getElementById("data-banner");
@@ -219,6 +239,29 @@ function validateCSV(data) {
         error: `Invalid base URL: '${row.url}'. Must contain 'VHL_CENTRAL_M3A' or 'VHL_CENTRAL_ASSETS'.`,
       });
     }
+    numericColumns.forEach((col) => {
+      if (row[col] && isNaN(Number(row[col]))) {
+        errors.push({
+          row: index + 1,
+          error: `Column '${col}' must be a number. Found value: '${row[col]}'`,
+        });
+      }
+    });
+
+    // String type validation for non-numeric columns
+    headers.forEach((col) => {
+      if (
+        !numericColumns.includes(col) &&
+        row[col] &&
+        !isNaN(Number(row[col]))
+      ) {
+        console.log(Number(row[col]));
+        errors.push({
+          row: index + 1,
+          error: `Column '${col}' must be a string. Found value: ${row[col]}`,
+        });
+      }
+    });
     return errors;
   }, []);
 

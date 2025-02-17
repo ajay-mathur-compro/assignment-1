@@ -271,7 +271,6 @@
           id="drop-area"
           class="drop-zone"
           ondragover="handleDragOver(event)"
-          ondragleave="handleDragLeave(event)"
           ondrop="handleDrop(event)"
         >
           <p>
@@ -297,7 +296,7 @@
           />
         </div>
 
-        <div id="validation-results" style="display: none;">
+        <div id="validation-results" style="display: none;" role="alert">
           <!-- Structural Validation -->
           <div
             id="structural-banner"

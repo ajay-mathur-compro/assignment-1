@@ -1,3 +1,3 @@
 page_label,placement,tooltip,link_type,icon_style,x,y,h,w,base_path,url,page,audio_1,audio_2,audio_3,audio_4,readalong_group,animation-color,video_1,subtitle_1,subtitle_2,subtitle_3,subtitle_4,html_ele_ref,view_mode
 Page 1,Top Left,Tooltip 1,internal,style1,10,30,50,70,/assets/images,https://VHL_CENTRAL_M3A/files/image.png,Home,audio1.mp3,,audio4.mp3,,group1,red,video1.mp4,subtitle1.srt,,subtitle4.srt,,element1,fullscreen
-Page 2,Bottom Right,Tooltip 2,external,style2,20,40,60,80,/assets/videos,https://VHL_CENTRAL_M3A/files/image.png,Contact,audio2.mp3,audio3.mp3,,,group2,blue,video2.mp4,subtitle2.srt,subtitle3.srt,,,element2,embedded
+Page 2,Bottom Right,Tooltip 2,external,style2,20,40,60,80,/assets/videos,https://VHL_CENTRAL_ASSETS/files/image.png,Contact,audio2.mp3,audio3.mp3,,,group2,blue,video2.mp4,subtitle2.srt,subtitle3.srt,,,element2,embedded
