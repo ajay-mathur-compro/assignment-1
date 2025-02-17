@@ -12,8 +12,7 @@ body {
 }
 
 /* Center-align text for headings and paragraphs */
-h1,
-p {
+h1{
   text-align: center;
 }
 
@@ -105,6 +104,20 @@ label {
   margin: 10px 0 20px;
   font-weight: bold;
 }
+#browse {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #0a79ef;
+  color: white;
+  cursor: pointer;
+  height: 30px;
+  border-radius: 5px;
+  margin-top: 5px;
+}
+#browse:hover {
+  background-color: #0056b3;
+}
 
 /* Styles for input, select, and button elements */
 input,
@@ -134,10 +147,10 @@ select:hover {
 }
 
 /* Focus styles for the submit button */
-#submit:focus, #submit:hover:enabled {
-  background-color: #09478a
+#submit:focus,
+#submit:hover:enabled {
+  background-color: #09478a;
 }
-
 
 /* Styles for select elements */
 select {
@@ -240,6 +253,40 @@ button:disabled {
   background-color: #d73f40;
   transition: width 0.3s ease-in-out;
 }
+.drop-zone {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: 2px dashed #007bff;
+  padding: 30px;
+  margin: 20px 10px 25px;
+  background: #eef5ff;
+  cursor: pointer;
+  transition: background 0.3s;
+  height: 230px;
+}
+.download-btn {
+  display: inline-block;
+  padding: 10px 15px;
+  background-color: #007bff;
+  color: white;
+  text-decoration: none;
+  border-radius: 5px;
+  margin: 10px 0px 20px;
+}
+.download-btn:hover {
+  background-color: #0056b3;
+}
+
+.drop-zone:hover {
+  background: #dbe9ff;
+}
+#errors {
+  color: red;
+  margin: 10px 0px 20px;
+  white-space: pre-line;
+  text-align: left;
+}
 
 /* Styles for the button container */
 .button-container {
@@ -265,6 +312,98 @@ button:disabled {
   width: 4%;
   cursor: pointer;
   background-color: #808080;
+}
+#validation-results {
+  margin: 20px 0;
+  font-family: Arial, sans-serif;
+}
+
+.status-banner {
+  padding: 15px;
+  margin-bottom: 20px;
+  border-radius: 4px;
+  font-weight: bold;
+}
+
+.status-banner.passed {
+  background-color: #e8f5e9;
+  color: #2e7d32;
+  border: 1px solid #a5d6a7;
+}
+
+.status-banner.failed {
+  background-color: #ffebee;
+  color: #c62828;
+  border: 1px solid #ef9a9a;
+}
+
+.validation-section {
+  background: #fff;
+  border: 1px solid #e0e0e0;
+  border-radius: 4px;
+  margin-bottom: 20px;
+  padding: 20px;
+}
+
+.validation-section h2 {
+  margin: 0 0 20px 0;
+  color: #333;
+  font-size: 1.2em;
+}
+
+.validation-check {
+  display: flex;
+  align-items: flex-start;
+  margin-bottom: 15px;
+  padding: 10px;
+  border-radius: 4px;
+  background: #f5f5f5;
+}
+
+.check-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  margin-right: 15px;
+  flex-shrink: 0;
+}
+
+.check-icon.passed {
+  background: #e8f5e9;
+  color: #2e7d32;
+}
+
+.check-icon.failed {
+  background: #ffebee;
+  color: #c62828;
+}
+
+.check-content {
+  flex: 1;
+}
+
+.check-content h3 {
+  margin: 0 0 5px 0;
+  font-size: 1em;
+  color: #333;
+}
+
+.check-content p {
+  margin: 0;
+  color: #666;
+  font-size: 0.9em;
+}
+
+.validation-note {
+  padding: 15px;
+  background: #fff3e0;
+  border: 1px solid #ffe0b2;
+  border-radius: 4px;
+  color: #ef6c00;
+  margin-top: 20px;
 }
 
 /* Dark mode styles */
@@ -292,6 +431,43 @@ button:disabled {
 /* Dark mode styles for error messages */
 .dark .error {
   color: #770000;
+}
+
+.dark .drop-zone {
+  border: 2px dashed #75d55d;
+  background: #333333;
+}
+
+.dark .drop-zone:hover {
+  background: #171717;
+}
+.dark .download-btn {
+  background-color: #368525;
+}
+
+.dark .download-btn:hover {
+  background-color: #1f4d0f;
+}
+/* Dark mode support */
+.dark .validation-section {
+  background: #424242;
+  border-color: #616161;
+}
+
+.dark .validation-section h2 {
+  color: #fff;
+}
+
+.dark .validation-check {
+  background: #333;
+}
+
+.dark .check-content h3 {
+  color: #fff;
+}
+
+.dark .check-content p {
+  color: #bdbdbd;
 }
 
 /* Dark mode styles for the submit button */

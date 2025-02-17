@@ -1,18 +1,19 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <meta charset="UTF-8" >
+    <meta charset="UTF-8" />
     <!-- Character encoding for the document -->
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" >
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <!-- Viewport settings for responsive design -->
     <title>Assignment</title>
     <!-- Title of the document -->
-    <link rel="stylesheet" href="styles.css" >
+    <link rel="stylesheet" href="styles.css" />
     <!-- Link to external CSS file -->
     <link
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"
-    >
+    />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/PapaParse/5.3.0/papaparse.min.js"></script>
     <!-- Link to Font Awesome for icons -->
   </head>
 
@@ -26,7 +27,7 @@
           id="toggle"
           onclick="toggleDarkMode(event)"
           aria-label="Switch Theme"
-        >
+        />
         <!-- Checkbox for toggling dark mode -->
         <span class="slider round"></span>
         <!-- Slider for the toggle switch -->
@@ -52,7 +53,7 @@
           aria-labelledby="Name"
           onblur="validateName(event)"
           required
-        >
+        />
         <!-- Name input field with validation -->
         <span
           class="error"
@@ -61,7 +62,7 @@
           aria-live="assertive"
         ></span>
         <!-- Error message for name input -->
-        <br >
+        <br />
         <label id="Email">Email:</label>
         <!-- Label for email input -->
         <input
@@ -72,7 +73,7 @@
           required
           aria-labelledby="Email"
           onblur="validateEmail(event)"
-        >
+        />
         <!-- Email input field with validation -->
         <span
           class="error"
@@ -81,7 +82,7 @@
           aria-live="assertive"
         ></span>
         <!-- Error message for email input -->
-        <br >
+        <br />
         <label id="Phone">Phone Number:</label>
         <!-- Label for phone input -->
         <input
@@ -95,9 +96,9 @@
           maxlength="10"
           pattern="\d{10}"
           title="Phone number must be exactly 10 digits."
-        >
+        />
         <!-- Phone input field with validation -->
-        <br >
+        <br />
         <label id="Age">Age:</label>
         <!-- Label for age input -->
         <input
@@ -109,9 +110,9 @@
           aria-labelledby="Age"
           maxlength="2"
           title="Age should be between 1 and 99."
-        >
+        />
         <!-- Age input field with validation -->
-        <br >
+        <br />
         <label id="Address">Address:</label>
         <!-- Label for address input -->
         <input
@@ -120,7 +121,7 @@
           name="address"
           required
           aria-labelledby="Address"
-        >
+        />
         <!-- Address input field -->
         <span
           class="error"
@@ -129,14 +130,14 @@
           aria-live="assertive"
         ></span>
         <!-- Error message for address input -->
-        <br >
+        <br />
         <label id="State">State: </label>
         <!-- Label for state select -->
         <select
           id="state"
           name="state"
           aria-labelledby="State"
-          oninput ="validateState(event)"
+          oninput="validateState(event)"
         >
           <option value="default">--Select State--</option>
           <!-- Default option for state select -->
@@ -185,8 +186,8 @@
           aria-live="assertive"
         ></span>
         <!-- Error message for state select -->
-        <br >
-        <label for = "password" id="password-info">Password</label>
+        <br />
+        <label for="password" id="password-info">Password</label>
         <span
           role="button"
           class="info-icon"
@@ -204,8 +205,8 @@
             name="password"
             required
             aria-labelledby="password"
-            onblur  ="validatePassword(event)"
-          >
+            onblur="validatePassword(event)"
+          />
           <!-- Password input field with validation -->
           <button
             type="button"
@@ -220,7 +221,6 @@
             ></span>
           </button>
           <!-- Button to toggle password visibility -->
-
         </div>
         <span
           class="error"
@@ -229,11 +229,16 @@
           aria-live="assertive"
         ></span>
         <!-- Error message for password input -->
-        <br >
+        <br />
         <label id="strengthLabel" aria-label="Strength of password">
           Strength of password
         </label>
-        <div id="password-strength" class="password-strength" aria-live="polite"></div> <!-- Password strength indicator -->
+        <div
+          id="password-strength"
+          class="password-strength"
+          aria-live="polite"
+        ></div>
+        <!-- Password strength indicator -->
         <!-- Label for password strength indicator -->
         <div class="power-container">
           <div id="power-point"></div>
@@ -248,7 +253,7 @@
           required
           aria-labelledby="ConfirmPassword"
           oninput="validateConfirmPassword(event)"
-        >
+        />
         <!-- Confirm password input field with validation -->
         <span
           class="error"
@@ -257,7 +262,107 @@
           aria-live="assertive"
         ></span>
         <!-- Error message for confirm password input -->
-        <br >
+        <br />
+        <!-- Drag and Drop Area -->
+        <a href="sample.csv" download class="download-btn" aria-label="Download Sample CSV"
+          >📥 Download Sample CSV</a
+        >
+        <div
+          id="drop-area"
+          class="drop-zone"
+          ondragover="handleDragOver(event)"
+          ondragleave="handleDragLeave(event)"
+          ondrop="handleDrop(event)"
+        >
+          <p>
+            Drag & Drop your CSV file here or
+            <!-- Use link -->
+            <a
+              href="#"
+              id="browse"
+              class="browse-link"
+              tabindex="0"
+              onkeydown="triggerFileInput(event)"
+              onclick="triggerFileInput(event)"
+              aria-label="Browse for CSV file"
+              >Browse</a
+            >
+          </p>
+          <input
+            type="file"
+            id="file-input"
+            accept=".csv"
+            hidden
+            onchange="handleFile(event)"
+          />
+        </div>
+
+        <div id="validation-results" style="display: none;">
+          <!-- Structural Validation -->
+          <div
+            id="structural-banner"
+            class="status-banner"
+          ></div>
+
+          <div class="validation-section">
+            <h2>Structural Checks</h2>
+
+            <div class="validation-check">
+              <span id="worksheet-icon" class="check-icon"></span>
+              <div class="check-content">
+                <h3>Valid Worksheet</h3>
+                <p id="worksheet-message"></p>
+              </div>
+            </div>
+
+            <div class="validation-check">
+              <span id="required-columns-icon" class="check-icon"></span>
+              <div class="check-content">
+                <h3>Required Columns</h3>
+                <p id="required-columns-message"></p>
+              </div>
+            </div>
+
+            <div class="validation-check">
+              <span id="allowed-columns-icon" class="check-icon"></span>
+              <div class="check-content">
+                <h3>Allowed Columns</h3>
+                <p id="allowed-columns-message"></p>
+              </div>
+            </div>
+
+            <div class="validation-check">
+              <span id="column-sequence-icon" class="check-icon"></span>
+              <div class="check-content">
+                <h3>Valid Column Sequence</h3>
+                <p id="column-sequence-message"></p>
+              </div>
+            </div>
+          </div>
+
+          <!-- Data Validation -->
+          <div
+            id="data-banner"
+            class="status-banner"
+          ></div>
+
+          <div
+            id="data-section"
+            class="validation-section"
+          >
+            <h2>Data Checks</h2>
+            <div id="data-checks"></div>
+          </div>
+
+          <div
+            id="data-validation-note"
+            class="validation-note"
+          >
+            Data checks could not be performed due to failure in structural
+            checks validations.
+          </div>
+        </div>
+
         <div class="button-container">
           <button id="submit" type="submit" value="Submit" disabled>
             Submit
@@ -278,6 +383,7 @@
     </main>
 
     <script src="script.js"></script>
+    <script src="csv.js"></script>
     <!-- Link to external JavaScript file -->
   </body>
 </html>
