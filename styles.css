@@ -448,6 +448,12 @@ button:disabled {
 .dark .download-btn:hover {
   background-color: #1f4d0f;
 }
+.dark #browse {
+  background-color: #0972e3;
+}
+.dark #browse:hover {
+  background-color: #0056b3;
+}
 /* Dark mode support */
 .dark .validation-section {
   background: #424242;
