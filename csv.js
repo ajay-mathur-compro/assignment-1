@@ -13,7 +13,7 @@ function handleDrop(event) {
 // Trigger file input click event for file selection
 function triggerFileInput(event) {
   // Check if the event type is 'click' or if the key pressed is 'Enter' or space
-  if (["click", "Enter", " "].includes(event.type || event.key)) {
+  if (event.type === "click" || event.key === "Enter" || event.key === " ") {
     event.preventDefault(); // Prevent the default action
     document.getElementById("file-input").click(); // Trigger the file input click
   }
