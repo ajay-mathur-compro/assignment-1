@@ -2,13 +2,10 @@
 
 document.body.addEventListener("dragover", (event) => {
   event.preventDefault();
-  event.stopPropagation();
 });
 
 document.body.addEventListener("drop", (event) => {
   event.preventDefault();
-  event.stopPropagation();
-
   // Check if the drop target is not the drop zone or its children
   const dropZone = document.getElementById("drop-area");
   if (!dropZone.contains(event.target)) {
@@ -29,7 +26,7 @@ function handleDrop(event) {
 }
 
 // Trigger file input click event for file selection
-function triggerFileInput(event) {
+function handleBrowseLinkTrigger(event) {
   // Check if the event type is 'click' or if the key pressed is 'Enter' or space
   if (event.type === "click" || event.key === "Enter" || event.key === " ") {
     event.preventDefault(); // Prevent the default action
@@ -190,6 +187,7 @@ function validateCSV(data) {
     return true;
   }
 
+  // Structural Validation Banner
   const structuralPassed =
     worksheetValid &&
     requiredColumnsValid &&
