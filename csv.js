@@ -11,27 +11,17 @@ document.body.addEventListener("drop", (event) => {
   if (!dropZone.contains(event.target)) {
     alert("Please drop the file in the designated drop area.");
   }
+  else{
+    const file = event.dataTransfer.files[0];
+    processFile(file);
+  }
 });
 
-// Handle drag over event to prevent default behavior
-function handleDragOver(event) {
-  event.preventDefault();
-}
-
-// Handle drop event to process the dropped file
-function handleDrop(event) {
-  event.preventDefault();
-  const file = event.dataTransfer.files[0];
-  processFile(file);
-}
 
 // Trigger file input click event for file selection
 function handleBrowseLinkTrigger(event) {
-  // Check if the event type is 'click' or if the key pressed is 'Enter' or space
-  if (event.type === "click" || event.key === "Enter" || event.key === " ") {
     event.preventDefault(); // Prevent the default action
     document.getElementById("file-input").click(); // Trigger the file input click
-  }
 }
 
 // Handle file input change event to process the selected file

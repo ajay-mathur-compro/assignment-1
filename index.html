@@ -281,7 +281,7 @@
               id="browse"
               class="browse-link"
               tabindex="0"
-              onkeydown="handleBrowseLinkTrigger(event)"
+              onkeydown="if(event.keyCode === 13 || event.keyCode === 32) handleBrowseLinkTrigger(event)"
               onclick="handleBrowseLinkTrigger(event)"
               aria-label="Browse for CSV file"
               >Browse</a
