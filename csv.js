@@ -10,18 +10,16 @@ document.body.addEventListener("drop", (event) => {
   const dropZone = document.getElementById("drop-area");
   if (!dropZone.contains(event.target)) {
     alert("Please drop the file in the designated drop area.");
-  }
-  else{
+  } else {
     const file = event.dataTransfer.files[0];
     processFile(file);
   }
 });
 
-
 // Trigger file input click event for file selection
 function handleBrowseLinkTrigger(event) {
-    event.preventDefault(); // Prevent the default action
-    document.getElementById("file-input").click(); // Trigger the file input click
+  event.preventDefault(); // Prevent the default action
+  document.getElementById("file-input").click(); // Trigger the file input click
 }
 
 // Handle file input change event to process the selected file
@@ -61,10 +59,16 @@ function validateCSV(data) {
   console.log(data);
 
   // Display the validation results section
-  document.getElementById("validation-results").style.display = "block";
+  const validationResultSection = document.getElementById("validation-results");
+  validationResultSection.style.setProperty(
+    "display",
+    getComputedStyle(document.documentElement)
+      .getPropertyValue("--validationResultSectionDisplay")
+      .trim()
+  );
 
   const headers = Object.keys(data[0]);
-  
+
   const allowedColumns = [
     "page_label",
     "placement",
@@ -105,11 +109,11 @@ function validateCSV(data) {
   const allowedBaseURLs = ["VHL_CENTRAL_M3A", "VHL_CENTRAL_ASSETS"];
 
   const numericColumns = ["x", "y", "h", "w"];
-  
+
   // Helper function to update display
   function updateUI(id, passed, message) {
     const iconEl = document.getElementById(`${id}-icon`);
-    const messageEl = document.getElementById(`${id}-message`);
+    const messageEl = iconEl.nextElementSibling.lastElementChild;
     iconEl.className = `check-icon ${passed ? "passed" : "failed"}`;
     iconEl.textContent = passed ? "✓" : "✗";
     messageEl.textContent = message;
@@ -183,7 +187,7 @@ function validateCSV(data) {
     requiredColumnsValid &&
     allowedColumnsValid &&
     sequenceValid;
-  const structuralBanner = document.getElementById("structural-banner");
+  const structuralBanner = validationResultSection.firstElementChild;
   structuralBanner.className = `status-banner ${
     structuralPassed ? "passed" : "failed"
   }`;
@@ -193,10 +197,10 @@ function validateCSV(data) {
   structuralBanner.style.display = "block";
 
   // Data Validation
-  const dataSection = document.getElementById("data-section");
   const dataBanner = document.getElementById("data-banner");
-  const dataChecksContainer = document.getElementById("data-checks");
-  const dataValidationNote = document.getElementById("data-validation-note");
+  const dataSection = dataBanner.nextElementSibling;
+  const dataChecksContainer = dataSection.lastElementChild;
+  const dataValidationNote = dataSection.nextElementSibling;
   if (!structuralPassed) {
     dataSection.style.display = "none";
     dataBanner.style.display = "none";

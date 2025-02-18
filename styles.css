@@ -1,4 +1,8 @@
 /* General styles for the body */
+:root{
+  --validationResultSectionDisplay: block;
+}
+
 body {
   display: flex;
   flex-direction: column;
@@ -314,6 +318,7 @@ button:disabled {
   background-color: #808080;
 }
 #validation-results {
+  display: none;
   margin: 20px 0;
   font-family: Arial, sans-serif;
 }
