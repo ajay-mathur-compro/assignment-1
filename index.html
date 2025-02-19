@@ -17,7 +17,8 @@
     <!-- Link to Font Awesome for icons -->
   </head>
 
-  <body>
+  <body ondragover="handleDragOver(event)" ondrop="handleDrop(event)">
+    <!-- Body element with drag and drop event handlers -->
     <div id="toggle-container">
       <p>Switch Theme</p>
       <!-- Text for theme switcher -->
@@ -270,8 +271,6 @@
         <div
           id="drop-area"
           class="drop-zone"
-          ondragover="handleDragOver(event)"
-          ondrop="handleDrop(event)"
         >
           <p>
             Drag & Drop your CSV file here or
@@ -327,7 +326,7 @@
               <div class="check-content">
                 <h3>Allowed Columns</h3>
                 <p id="allowed-columns-message"></p>
-              </div>
+              </div> 
             </div>
 
             <div class="validation-check">
