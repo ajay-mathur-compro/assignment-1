@@ -178,7 +178,7 @@ function validateCSV(data) {
   const hasOnlyAllowedColumns = headers.every((col) =>
     allowedColumns.includes(col)
   );
-  const isValidSequence = isValidColumnSequence(headers, allowedColumns);
+  const isValidSequence = hasRequiredColumns && hasOnlyAllowedColumns ? isValidColumnSequence(headers, allowedColumns) : false;
 
   // Update UI with validation results
   const worksheetValid = updateUI(
